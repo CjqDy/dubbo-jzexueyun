@@ -23,7 +23,7 @@
             <id>local</id>
             <properties>
                 <profiles.active>local</profiles.active>
-                <lollipop.version>9.1.1-test</lollipop.version>
+                <lollipop.version>2.0.0</lollipop.version>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -33,7 +33,7 @@
             <id>sit</id>
             <properties>
                 <profiles.active>sit</profiles.active>
-                <lollipop.version>9.1.1-test</lollipop.version>
+                <lollipop.version>2.0.0</lollipop.version>
             </properties>
 
         </profile>
@@ -41,7 +41,7 @@
             <id>uat</id>
             <properties>
                 <profiles.active>uat</profiles.active>
-                <lollipop.version>9.1.1</lollipop.version>
+                <lollipop.version>2.0.0</lollipop.version>
             </properties>
         </profile>
     </profiles>

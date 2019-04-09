@@ -3,19 +3,22 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>dubbo-jzexueyun-bussiness</artifactId>
+        <artifactId>bussiness-common</artifactId>
         <groupId>com.orange</groupId>
         <version>2.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>bussiness-common</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>bussiness-common-interface</module>
-        <module>bussiness-common-entity</module>
-        <module>bussiness-common-code</module>
-    </modules>
+    <artifactId>bussiness-common-entity</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.orange</groupId>
+            <artifactId>bussiness-common-code</artifactId>
+            <version>${reversion}</version>
+        </dependency>
+
+    </dependencies>
 
 
 </project>

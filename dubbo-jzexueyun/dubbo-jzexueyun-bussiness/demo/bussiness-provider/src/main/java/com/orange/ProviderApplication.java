@@ -1,5 +1,6 @@
 package com.orange;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.IOException;

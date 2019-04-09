@@ -14,16 +14,14 @@
         <property name="locations">
             <list>
                 <value>classpath:application.properties</value>
-                <!-- <value>classpath:mongodb.properties</value> -->
+                <value>classpath:database.properties</value>
             </list>
         </property>
     </bean>
 
+
+    <import resource="spring-dao.xml" />
     <import resource="spring-dubbo-provider.xml"/>
 
-    <!--<import resource="spring-dao.xml" />-->
-    <!--<import resource="spring-dubbo-provider.xml" />-->
-    <!--&lt;!&ndash; <import resource="spring-mongodb.xml" /> &ndash;&gt;-->
-    <!--<import resource="spring-rabbitmq.xml" />-->
 
 </beans>
