@@ -15,12 +15,15 @@
             <list>
                 <value>classpath:application.properties</value>
                 <value>classpath:database.properties</value>
+                <value>classpath:redis.properties</value>
+                <value>classpath:log4jdbc.properties</value>
             </list>
         </property>
     </bean>
 
 
     <import resource="spring-dao.xml" />
+    <import resource="spring-redis.xml" />
     <import resource="spring-dubbo-provider.xml"/>
 
 

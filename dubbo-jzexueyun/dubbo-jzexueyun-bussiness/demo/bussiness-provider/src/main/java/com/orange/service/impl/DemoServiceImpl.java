@@ -1,9 +1,8 @@
 package com.orange.service.impl;
 
-import com.alibaba.dubbo.config.annotation.Reference;
-
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.orange.common.util.RedisUtil;
 import com.orange.dao.UserBaseMapper;
 import com.orange.entity.demo.UserBase;
 import com.orange.service.DemoService;
@@ -22,10 +21,14 @@ public class DemoServiceImpl implements DemoService {
     @Autowired
     UserBaseMapper userBaseMapper;
 
+    @Autowired
+    RedisUtil redisUtil;
+
     @Override
     public void sayHello() {
-
+        redisUtil.set("key_001","成佳奇");
         UserBase userbase= userBaseMapper.selectByPrimaryKey("123");
         System.out.println(userbase);
+        System.out.println(redisUtil.get("key_001"));
     }
 }

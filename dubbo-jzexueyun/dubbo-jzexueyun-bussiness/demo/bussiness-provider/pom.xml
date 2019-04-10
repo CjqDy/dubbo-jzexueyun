@@ -28,6 +28,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.orange</groupId>
+            <artifactId>bussiness-common-cache</artifactId>
+            <version>${reversion}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
             <version>1.6.8</version>
@@ -111,12 +117,26 @@
             <!--<version>1.6.1</version>-->
         <!--</dependency>-->
 
+        <!-- redis -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>3.0.2</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
                 <executions>
                     <execution>
                         <id>copy-resources</id>

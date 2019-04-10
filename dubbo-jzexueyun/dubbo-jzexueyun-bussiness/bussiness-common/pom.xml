@@ -15,6 +15,7 @@
         <module>bussiness-common-interface</module>
         <module>bussiness-common-entity</module>
         <module>bussiness-common-code</module>
+        <module>bussiness-common-cache</module>
     </modules>
 
 
