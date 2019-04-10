@@ -10,6 +10,7 @@
     <version>2.0.0</version>
     <modules>
         <module>dubbo-jzexueyun-bussiness</module>
+        <module>public-auth-center</module>
     </modules>
 
 
