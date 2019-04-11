@@ -19,11 +19,11 @@ import java.util.Collections;
 import java.util.regex.Pattern;
 
 /**
- * 扩展 RedisCacheManager 增肌自定义缓存时间
- * 
- * @author gang.shen
- * @date 2017/10/19
- */
+ * @program: dubbo-jzexueyun
+ * @description:CustomizedRedisCacheManager 扩展 RedisCacheManager 增肌自定义缓存时间
+ * @author: chengjiaqi
+ * @create: 2019/04/10 17:16
+ **/
 public class CustomizedRedisCacheManager  extends RedisCacheManager {
 
 

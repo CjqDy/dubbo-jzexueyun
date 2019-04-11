@@ -15,12 +15,13 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+
 /**
- * redis缓存实现
- *
- * @author gang.shen
- * @date 2017/10/19
- */
+ * @program: dubbo-jzexueyun
+ * @description:RedisCacheImpl
+ * @author: chengjiaqi
+ * @create: 2019/04/10 17:16
+ **/
 public class RedisCacheImpl implements RedisCache {
 
   public static final long ONE_SECOND = 1L;

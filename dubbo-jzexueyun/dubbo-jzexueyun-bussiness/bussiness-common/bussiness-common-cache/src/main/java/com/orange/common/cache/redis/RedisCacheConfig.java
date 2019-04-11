@@ -16,11 +16,11 @@ import org.springframework.data.redis.core.RedisTemplate;
 import java.lang.reflect.Method;
 
 /**
- * 缓存注解配置
- *
- * @author gang.shen
- * @date 2017/10/19
- */
+ * @program: dubbo-jzexueyun
+ * @description:RedisCacheConfig
+ * @author: chengjiaqi
+ * @create: 2019/04/10 17:16
+ **/
 @Configuration
 @EnableCaching
 public class RedisCacheConfig extends CachingConfigurerSupport {
@@ -67,7 +67,7 @@ public class RedisCacheConfig extends CachingConfigurerSupport {
                  for (Object obj : params) {
                      sb.append(obj.toString()+",");
                  }
-                 //暂时注释掉--chengjiaqi 0410
+                 //TODO:暂时注释掉--chengjiaqi 0410
 //               UserInfo userInfo = SessionLocalUtil.getUser();
 //               if(userInfo != null){
 //                 sb.append(":").append(userInfo.getUserId());

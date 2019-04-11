@@ -6,6 +6,7 @@ import com.orange.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.ImportResource;
 
 import javax.annotation.PostConstruct;
@@ -18,19 +19,13 @@ import javax.annotation.PostConstruct;
  **/
 @SpringBootApplication
 @ImportResource({"classpath:/spring/spring.xml"})
+@ServletComponentScan
 public class ApplicationConsumer {
-
-//    @Reference
-//    private DemoService demoService;
-
-    @PostConstruct
-    public void init(){
-//        demoService.sayHello();
-    }
 
 
     public static void main(String[] args) {
         SpringApplication.run(ApplicationConsumer.class,args);
+        System.out.println("demo-consumer-start................");
     }
 
 }
