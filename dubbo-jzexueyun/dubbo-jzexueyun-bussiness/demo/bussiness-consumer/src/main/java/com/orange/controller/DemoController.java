@@ -1,6 +1,10 @@
 package com.orange.controller;
 
 import com.orange.common.contants.GeneralConstant;
+import com.orange.common.exception.BaseException;
+import com.orange.common.exception.ParamException;
+import com.orange.common.response.RequestMsg;
+import com.orange.common.response.ResponseMsg;
 import com.orange.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -35,10 +39,14 @@ public class DemoController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public void login(){
+    @RequestMapping(value = "/test",method = RequestMethod.POST)
+    public ResponseMsg test(@RequestHeader("Uid") String userId,@RequestBody RequestMsg requestMsg){
+        if(!"1233".equals(userId)){
+            throw new ParamException("base error");
+        }
         System.out.println("no param");
         demoService.sayHello();
+        return new ResponseMsg(requestMsg.getRoute(), GeneralConstant.SUCCESS, "查询成功", null);
     }
 
 }

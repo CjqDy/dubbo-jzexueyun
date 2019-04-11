@@ -1,33 +1,34 @@
 package com.orange.common.exception;
 
-
-public  class BaseException extends RuntimeException {
+public class GlobalException extends Exception{
 
 	private static final long serialVersionUID = 1L;
 
-	public BaseException() {
+	public GlobalException() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public BaseException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+	public GlobalException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
 		// TODO Auto-generated constructor stub
 	}
 
-	public BaseException(String message, Throwable cause) {
+	public GlobalException(String message, Throwable cause) {
 		super(message, cause);
 		// TODO Auto-generated constructor stub
 	}
 
-	public BaseException(String message) {
+	public GlobalException(String message) {
 		super(message);
 		// TODO Auto-generated constructor stub
 	}
 
-	public BaseException(Throwable cause) {
+	public GlobalException(Throwable cause) {
 		super(cause);
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	
+	
 }

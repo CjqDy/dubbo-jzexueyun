@@ -2,6 +2,10 @@ package com.orange.filter;
 
 import com.alibaba.fastjson.JSONObject;
 import com.orange.common.contants.GeneralConstant;
+import com.orange.common.enums.ReturnMsgEnum;
+import com.orange.common.exception.handler.GlobalExceptionHandler;
+import com.orange.common.response.ResponseMsg;
+import com.orange.common.response.Route;
 import com.orange.common.util.PropertiesFileUtil;
 import org.apache.commons.lang.StringUtils;
 
@@ -59,7 +63,26 @@ public class SessionFilter implements Filter {
             requestWrapper = new MutableHttpServletRequest((HttpServletRequest) request);
         }
         String body = getRequestbody(requestWrapper);
+        String token = "",servCode = "", tranSid = "" , sysSign = "";
         //TODO:validate interface and user data start
+        //获取body中的鉴权码和token
+//        try {
+//            net.sf.json.JSONObject jsonObject = new net.sf.json.JSONObject();
+//            jsonObject = jsonObject.fromObject(body);//将String转为JSON数据
+//            token =  jsonObject.fromObject(jsonObject.getString("ROUTE")).getString("ACCESSTOKEN");
+//            servCode = jsonObject.fromObject(jsonObject.getString("ROUTE")).getString("SERVCODE");
+//            tranSid = jsonObject.fromObject(jsonObject.getString("ROUTE")).getString("TRANSID");
+//            sysSign = jsonObject.fromObject(jsonObject.getString("ROUTE")).getString("SYSSIGN");
+//        } catch (Exception e) {
+//            // TODO: handle exception
+//            //ResultModel resultModel = new ResultModel(ReturnMsgEnum.TOKEN_ILLEGAL.getCode(),
+//            //ReturnMsgEnum.TOKEN_ILLEGAL.getMsg(), null, System.currentTimeMillis());
+//            Route route = new Route();
+//            ResponseMsg responseMsg = new ResponseMsg(route, ReturnMsgEnum.TOKEN_ILLEGAL.getCode(),
+//                    ReturnMsgEnum.TOKEN_ILLEGAL.getMsg(), "");
+//            GlobalExceptionHandler.responseJsonRes(response, responseMsg);
+//            return;
+//        }
 
         //end
         //userId Package to Header

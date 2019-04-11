@@ -1,5 +1,7 @@
 package com.orange.common.contants;
 
+import com.orange.common.enums.ReturnMsgEnum;
+
 /**
  * @program: dubbo-jzexueyun
  * @description: GeneralConstant 通用常量
@@ -7,6 +9,15 @@ package com.orange.common.contants;
  * @create: 2019/04/11 08:59
  **/
 public class GeneralConstant {
+
+    /**
+     * 成功
+     */
+    public static final int SUCCESS = ReturnMsgEnum.SUCCESS.getCode();
+    /**
+     * 失败
+     */
+    public static final int FAIL = ReturnMsgEnum.BUSINESS_ERROR.getCode();
 
     /**
      * common配置文件

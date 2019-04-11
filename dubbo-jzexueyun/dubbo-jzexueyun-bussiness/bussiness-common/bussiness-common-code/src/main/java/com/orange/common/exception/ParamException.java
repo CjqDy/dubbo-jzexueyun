@@ -1,36 +1,27 @@
 package com.orange.common.exception;
 
 
-import com.orange.common.enums.ExceptionLevelEnum;
-import com.orange.common.enums.ReturnMsgEnum;
 
-/**
- * 参数异常
- *
- * @author lizhihua
- * @date 2017/10/20.
- */
 public class ParamException extends BaseException {
 
-  public ParamException(String msg) {
-    super(msg);
+
+  public ParamException() {
+    super();
   }
 
-  public ParamException(Throwable exception) {
-    super(exception);
+  public ParamException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    super(message, cause, enableSuppression, writableStackTrace);
   }
 
-  public ParamException(String msg, Exception exception) {
-    super(msg, exception);
+  public ParamException(String message, Throwable cause) {
+    super(message, cause);
   }
 
-  @Override
-  public ReturnMsgEnum getMsgEnum() {
-    return ReturnMsgEnum.PARAM_ERROR;
+  public ParamException(String message) {
+    super(message);
   }
 
-  @Override
-  public ExceptionLevelEnum getLevel() {
-    return ExceptionLevelEnum.INFO;
+  public ParamException(Throwable cause) {
+    super(cause);
   }
 }
