@@ -1,11 +1,11 @@
 package com.orange.common.enums;
 
 /**
- * 错误级别
- *
- * @author lizhihua
- * @date 2017/10/27.
- */
+ * @program: dubbo-jzexueyun
+ * @description:error level
+ * @author: chengjiaqi
+ * @create: 2019/04/08 17:50
+ **/
 public enum ExceptionLevelEnum {
 
   /**

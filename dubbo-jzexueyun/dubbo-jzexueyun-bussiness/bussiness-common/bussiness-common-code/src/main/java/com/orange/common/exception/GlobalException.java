@@ -1,5 +1,11 @@
 package com.orange.common.exception;
 
+/**
+ * @program: dubbo-jzexueyun
+ * @description: 系统异常
+ * @author: chengjiaqi
+ * @create: 2019/04/08 17:50
+ **/
 public class GlobalException extends Exception{
 
 	private static final long serialVersionUID = 1L;

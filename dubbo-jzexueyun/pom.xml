@@ -18,11 +18,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <reversion>2.0.0</reversion>
-        <spring-boot.version>2.1.2.RELEASE</spring-boot.version>
+        <spring-boot.version>2.1.3.RELEASE</spring-boot.version>
         <dubbo.version>2.7.0</dubbo.version>
         <dubbo.nacos>0.0.1</dubbo.nacos>
         <dubbo.nacos.client>0.9.1</dubbo.nacos.client>
-        <spring-context>4.3.2.RELEASE</spring-context>
+        <spring-context>4.3.13.RELEASE</spring-context>
         <ehcache.version>2.10.0</ehcache.version>
         <spring-version>5.1.4.RELEASE</spring-version>
     </properties>
@@ -59,6 +59,14 @@
 
     <dependencyManagement>
         <dependencies>
+
+            <!--<dependency>-->
+                <!--<groupId>org.springframework.boot</groupId>-->
+                <!--<artifactId>spring-boot-dependencies</artifactId>-->
+                <!--<version>${spring-boot.version}</version>-->
+                <!--<type>pom</type>-->
+                <!--<scope>import</scope>-->
+            <!--</dependency>-->
 
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -237,6 +245,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
                 <configuration>
                     <compilerArgument>-parameters</compilerArgument>
                     <source>1.8</source>

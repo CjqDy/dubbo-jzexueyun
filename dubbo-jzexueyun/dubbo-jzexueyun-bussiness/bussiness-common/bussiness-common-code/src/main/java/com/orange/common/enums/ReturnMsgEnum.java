@@ -1,11 +1,11 @@
 package com.orange.common.enums;
 
 /**
- * 错误码统一返回
- *
- * @author sheng
- * @date 2017/10/27.
- */
+ * @program: dubbo-jzexueyun
+ * @description:错误码返回
+ * @author: chengjiaqi
+ * @create: 2019/04/11 17:50
+ **/
 public enum ReturnMsgEnum {
 
     /**

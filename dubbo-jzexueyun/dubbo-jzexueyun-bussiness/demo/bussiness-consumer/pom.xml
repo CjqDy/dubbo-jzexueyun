@@ -2,11 +2,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!--<parent>-->
+    <!--<groupId>org.springframework.boot</groupId>-->
+    <!--<artifactId>spring-boot-starter-parent</artifactId>-->
+    <!--<version>2.1.3.RELEASE</version>-->
+    <!--<relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
+    <!--</parent>-->
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.3.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <groupId>com.orange</groupId>
+        <artifactId>demo</artifactId>
+        <version>2.0.0</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -18,37 +23,50 @@
         <java.version>1.8</java.version>
     </properties>
 
-    <!--此处根据环境修改你的配置 -->
-    <profiles>
-        <profile>
-            <id>local</id>
-            <properties>
-                <profiles.active>local</profiles.active>
-                <lollipop.version>2.0.0</lollipop.version>
-            </properties>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-        </profile>
-        <profile>
-            <id>sit</id>
-            <properties>
-                <profiles.active>sit</profiles.active>
-                <lollipop.version>2.0.0</lollipop.version>
-            </properties>
+    <!--&lt;!&ndash;此处根据环境修改你的配置 &ndash;&gt;-->
+    <!--<profiles>-->
+    <!--<profile>-->
+    <!--<id>local</id>-->
+    <!--<properties>-->
+    <!--<profiles.active>local</profiles.active>-->
+    <!--<lollipop.version>2.0.0</lollipop.version>-->
+    <!--</properties>-->
+    <!--<activation>-->
+    <!--<activeByDefault>true</activeByDefault>-->
+    <!--</activation>-->
+    <!--</profile>-->
+    <!--<profile>-->
+    <!--<id>sit</id>-->
+    <!--<properties>-->
+    <!--<profiles.active>sit</profiles.active>-->
+    <!--<lollipop.version>2.0.0</lollipop.version>-->
+    <!--</properties>-->
 
-        </profile>
-        <profile>
-            <id>uat</id>
-            <properties>
-                <profiles.active>uat</profiles.active>
-                <lollipop.version>2.0.0</lollipop.version>
-            </properties>
-        </profile>
-    </profiles>
+    <!--</profile>-->
+    <!--<profile>-->
+    <!--<id>uat</id>-->
+    <!--<properties>-->
+    <!--<profiles.active>uat</profiles.active>-->
+    <!--<lollipop.version>2.0.0</lollipop.version>-->
+    <!--</properties>-->
+    <!--</profile>-->
+    <!--</profiles>-->
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- TODO: 1.5.9.RELEASE 版本启动无异常   换成2.1.3.RELEASE版本启动异常 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>1.5.9.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
-
         <dependency>
             <groupId>com.orange</groupId>
             <artifactId>bussiness-common-interface</artifactId>
@@ -61,32 +79,34 @@
             <version>2.0.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <version>2.1.3.RELEASE</version>
+        </dependency>
+
         <!--&lt;!&ndash;日志相关 &ndash;&gt;-->
         <!--<dependency>-->
-            <!--<groupId>org.slf4j</groupId>-->
-            <!--<artifactId>slf4j-api</artifactId>-->
-            <!--<version>1.7.24</version>-->
+        <!--<groupId>org.slf4j</groupId>-->
+        <!--<artifactId>slf4j-api</artifactId>-->
+        <!--<version>1.7.24</version>-->
         <!--</dependency>-->
         <!--<dependency>-->
-            <!--<groupId>ch.qos.logback</groupId>-->
-            <!--<artifactId>logback-core</artifactId>-->
-            <!--<version>1.2.3</version>-->
+        <!--<groupId>ch.qos.logback</groupId>-->
+        <!--<artifactId>logback-core</artifactId>-->
+        <!--<version>1.2.3</version>-->
         <!--</dependency>-->
         <!--<dependency>-->
-            <!--<groupId>ch.qos.logback</groupId>-->
-            <!--<artifactId>logback-classic</artifactId>-->
-            <!--<version>1.2.3</version>-->
+        <!--<groupId>ch.qos.logback</groupId>-->
+        <!--<artifactId>logback-classic</artifactId>-->
+        <!--<version>1.2.3</version>-->
         <!--</dependency>-->
         <!--<dependency>-->
-            <!--<groupId>commons-logging</groupId>-->
-            <!--<artifactId>commons-logging</artifactId>-->
-            <!--<version>1.1.1</version>-->
+        <!--<groupId>commons-logging</groupId>-->
+        <!--<artifactId>commons-logging</artifactId>-->
+        <!--<version>1.1.1</version>-->
         <!--</dependency>-->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -105,6 +125,7 @@
             <version>2.0.0</version>
         </dependency>
 
+
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>
@@ -115,6 +136,12 @@
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo-registry-nacos</artifactId>
             <version>0.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
         </dependency>
 
         <dependency>

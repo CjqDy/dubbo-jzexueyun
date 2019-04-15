@@ -9,11 +9,11 @@ import java.util.Date;
 import java.util.HashMap;
 
 /**
- * 
- * @author chengjq
- * @data 2018/06/21
- *
- */
+ * @program: dubbo-jzexueyun
+ * @description: 响应数据封装
+ * @author: chengjiaqi
+ * @create: 2019/04/08 17:50
+ **/
 public class ResponseMsg implements Serializable{
 	
 	private static final long serialVersionUID = -2461017938431758852L;

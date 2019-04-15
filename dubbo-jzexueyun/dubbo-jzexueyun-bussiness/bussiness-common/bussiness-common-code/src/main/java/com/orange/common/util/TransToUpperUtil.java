@@ -5,12 +5,12 @@ import net.sf.json.JSONObject;
 
 import java.util.Iterator;
 
-/**  
-* 类说明   
-*  
-* @author ****  
-* @date 2018年6月18日  新建  
-*/
+/**
+ * @program: dubbo-jzexueyun
+ * @description: json转换
+ * @author: chengjiaqi
+ * @create: 2019/04/12 10:33
+ **/
 public class TransToUpperUtil {
 
 	

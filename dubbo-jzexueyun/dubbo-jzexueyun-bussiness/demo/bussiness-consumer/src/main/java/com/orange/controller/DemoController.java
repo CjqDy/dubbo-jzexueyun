@@ -41,6 +41,7 @@ public class DemoController {
     @ResponseBody
     @RequestMapping(value = "/test",method = RequestMethod.POST)
     public ResponseMsg test(@RequestHeader("Uid") String userId,@RequestBody RequestMsg requestMsg){
+        System.out.println();
         if(!"1233".equals(userId)){
             throw new ParamException("base error");
         }

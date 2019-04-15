@@ -21,6 +21,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * @program: dubbo-jzexueyun
+ * @description:全局异常处理
+ * @author: chengjiaqi
+ * @create: 2019/04/11 14:20
+ **/
 @CrossOrigin
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -28,6 +34,8 @@ public class GlobalExceptionHandler {
 
 	private static final String APPLICATION_JSON = "application/json";
 	private static final String UTF_8 = "UTF-8";
+
+
 
 	@ExceptionHandler(GlobalException.class)
 	@ResponseBody

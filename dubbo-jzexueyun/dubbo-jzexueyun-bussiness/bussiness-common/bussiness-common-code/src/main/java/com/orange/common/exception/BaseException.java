@@ -1,6 +1,12 @@
 package com.orange.common.exception;
 
 
+/**
+ * @program: dubbo-jzexueyun
+ * @description:基础异常 TODO
+ * @author: chengjiaqi
+ * @create: 2019/04/08 17:50
+ **/
 public  class BaseException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;

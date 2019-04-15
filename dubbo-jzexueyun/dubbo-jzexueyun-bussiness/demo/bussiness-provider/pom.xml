@@ -105,18 +105,6 @@
             <artifactId>pagehelper</artifactId>
         </dependency>
 
-        <!--&lt;!&ndash; aop &ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>org.aspectj</groupId>-->
-            <!--<artifactId>aspectjtools</artifactId>-->
-            <!--<version>1.7.4</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.aspectj</groupId>-->
-            <!--<artifactId>aspectjrt</artifactId>-->
-            <!--<version>1.6.1</version>-->
-        <!--</dependency>-->
-
         <!-- redis -->
         <dependency>
             <groupId>org.springframework.data</groupId>

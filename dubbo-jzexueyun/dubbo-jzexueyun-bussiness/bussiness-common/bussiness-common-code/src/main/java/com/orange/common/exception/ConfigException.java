@@ -1,6 +1,12 @@
 package com.orange.common.exception;
 
 
+/**
+ * @program: dubbo-jzexueyun
+ * @description: 配置异常
+ * @author: chengjiaqi
+ * @create: 2019/04/08 17:50
+ **/
 public class ConfigException extends BaseException {
 
 

@@ -4,6 +4,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 
+/**
+ * @program: dubbo-jzexueyun
+ * @description: 请求数据封装
+ * @author: chengjiaqi
+ * @create: 2019/04/08 17:50
+ **/
 public class RequestMsg implements Serializable{
 
 	/**
