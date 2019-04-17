@@ -39,4 +39,10 @@ public class GeneralConstant {
      */
     public static final String HEADER_NAME_UID = "Uid";
 
+
+    /**
+     * sentinel配置文件
+     */
+    public static final String PROPERTIES_sentinel = "sentinel";
+
 }

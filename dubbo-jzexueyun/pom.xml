@@ -11,6 +11,8 @@
     <modules>
         <module>dubbo-jzexueyun-bussiness</module>
         <module>public-auth-center</module>
+        <module>dubbo-jzexueyun-gateway</module>
+        <module>dubbo-jzexueyun-sentinel</module>
     </modules>
 
 
@@ -24,7 +26,7 @@
         <dubbo.nacos.client>0.9.1</dubbo.nacos.client>
         <spring-context>4.3.13.RELEASE</spring-context>
         <ehcache.version>2.10.0</ehcache.version>
-        <spring-version>5.1.4.RELEASE</spring-version>
+        <spring-version>4.3.13.RELEASE</spring-version>
     </properties>
 
     <!--此处根据环境修改你的配置 -->
@@ -61,11 +63,11 @@
         <dependencies>
 
             <!--<dependency>-->
-                <!--<groupId>org.springframework.boot</groupId>-->
-                <!--<artifactId>spring-boot-dependencies</artifactId>-->
-                <!--<version>${spring-boot.version}</version>-->
-                <!--<type>pom</type>-->
-                <!--<scope>import</scope>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-dependencies</artifactId>-->
+            <!--<version>${spring-boot.version}</version>-->
+            <!--<type>pom</type>-->
+            <!--<scope>import</scope>-->
             <!--</dependency>-->
 
             <dependency>
@@ -82,16 +84,22 @@
             </dependency>
 
             <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-registry-nacos</artifactId>
+                <version>2.7.1</version>
+            </dependency>
+
+            <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>dubbo</artifactId>
-                <version>2.6.5</version>
+                <version>2.6.6</version>
             </dependency>
 
 
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>dubbo-registry-nacos</artifactId>
-                <version>${dubbo.nacos}</version>
+                <version>0.0.1</version>
             </dependency>
 
             <!--日志相关 -->

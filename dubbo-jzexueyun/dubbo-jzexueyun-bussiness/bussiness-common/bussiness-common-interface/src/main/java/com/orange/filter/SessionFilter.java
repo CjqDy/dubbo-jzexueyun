@@ -53,11 +53,9 @@ public class SessionFilter implements Filter {
         String uri = request.getRequestURI();
         //Filter the interface address without authentication
         if(isTokenExcludeUrl(uri)){
-            System.out.println("uri without auth");
             filterChain.doFilter(request, response);
             return;
         }
-        System.out.println("uri within auth");
         MutableHttpServletRequest requestWrapper = null;
         if(request instanceof HttpServletRequest) {
             requestWrapper = new MutableHttpServletRequest((HttpServletRequest) request);
@@ -87,6 +85,7 @@ public class SessionFilter implements Filter {
         //end
         //userId Package to Header
         //E.g:requestWrapper.putHeader("userId", "1111");
+        //TODO:invoke auth center bussiness
         requestWrapper.putHeader(GeneralConstant.HEADER_NAME_UID, "1111");
         // return request infomation
         if(requestWrapper == null) {
