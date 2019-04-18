@@ -1,18 +1,26 @@
 package com.orange.controller;
 
 import com.alibaba.csp.sentinel.adapter.dubbo.fallback.DubboFallbackRegistry;
+import com.alibaba.csp.sentinel.concurrent.NamedThreadFactory;
 import com.alibaba.csp.sentinel.slots.block.SentinelRpcException;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowException;
+import com.alibaba.dubbo.rpc.RpcException;
 import com.orange.common.contants.GeneralConstant;
 import com.orange.common.exception.BaseException;
 import com.orange.common.exception.ParamException;
+import com.orange.common.exception.SentinelException;
 import com.orange.common.response.RequestMsg;
 import com.orange.common.response.ResponseMsg;
 import com.orange.service.DemoService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Reference;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 
@@ -25,9 +33,14 @@ import java.util.concurrent.TimeUnit;
 @RestController
 public class DemoController {
 
+    private static final Logger logger = LoggerFactory.getLogger(DemoController.class);
+
     @Autowired
     private DemoService demoService;
 
+
+    private static final ExecutorService pool = Executors.newFixedThreadPool(10,
+            new NamedThreadFactory("dubbo-consumer-pool"));
 
     @ResponseBody
     @RequestMapping(value = "/sayHello/{id}", method = RequestMethod.GET)
@@ -38,41 +51,26 @@ public class DemoController {
     @ResponseBody
     @RequestMapping(value = "/sayHello2", method = RequestMethod.POST)
     public void sayHello2(@RequestHeader(GeneralConstant.HEADER_NAME_UID) String userId) {
-//        try {
-//            demoService.sayHello();
-//            System.out.println("Success: ");
-//        } catch (SentinelRpcException ex) {
-//            //目前无法捕获SentinelRpcException
-//            System.out.println("blocked");
-////            DubboFallbackRegistry.getProviderFallback();
-//        } catch (Exception ex) {
-////            DubboFallbackRegistry.getProviderFallback();
-//            ex.printStackTrace();
-//        }
-        for (int i = 0; i < 1; i++) {
-            new Thread(() -> {
-                long start = 0L;
-                long end = 0L;
-                for (; ; ) {
-                    try {
-                        TimeUnit.MILLISECONDS.sleep(5);
-
-                        start = System.currentTimeMillis();
-                        demoService.sayHello3("world");
-                        end = System.currentTimeMillis();
-
-                        System.out.println(Thread.currentThread().getName() + " Success: " + ", 耗时:" + (end - start));
-                    } catch (SentinelRpcException ex) {
-                        end = System.currentTimeMillis();
-                        System.out.println(Thread.currentThread().getName() + " Blocked, 耗时:" + (end - start));
-                    } catch (Exception ex) {
-                        end = System.currentTimeMillis();
-                        System.out.println(Thread.currentThread().getName() + " Blocked, 耗时:" + (end - start));
-                    }
+        for (int i = 0; i < 10; i++) {
+            pool.submit(() -> {
+                try {
+                    //设置qps阈值在125左右，接口平均响应时间在35ms,计算结果在并发数为4~5条
+                    //实际结果为6~8条
+                    String message = demoService.sayHello3("world");
+                    System.out.println("Success: " + message+ LocalDateTime.now());
+                } catch (RpcException ex) {
+                    logger.info("blocked"+LocalDateTime.now());
+                } catch (SentinelRpcException ex) {
+                    logger.info("blocked22"+LocalDateTime.now());
+                }catch (Exception ex) {
+                    ex.printStackTrace();
                 }
-            }).start();
+            });
+//            pool.submit(() -> {
+//                demoService.sayHello();
+//                System.out.println("hello 123"+LocalDateTime.now());
+//            });
         }
-
 
     }
 

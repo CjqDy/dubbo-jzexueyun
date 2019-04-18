@@ -1,8 +1,11 @@
 package com.orange;
 
 
+import com.alibaba.csp.sentinel.adapter.dubbo.fallback.DubboFallbackRegistry;
+import com.alibaba.dubbo.rpc.RpcException;
 import com.orange.common.contants.SentinelConstant;
 
+import com.orange.dubbo.fallback.DemoFallback;
 import com.orange.dubbo.sentinel.SentinelControllerCenter;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -20,7 +23,14 @@ public class ProviderApplication {
 
 
     public static void main(String[] args) throws IOException {
-        SentinelControllerCenter sentinelControllerCenter = new SentinelControllerCenter(SentinelConstant.SENTINEL_DEMOS_SERVICE_METHOD);
+
+        //初始化SentinelControllerCenter
+        try {
+            SentinelControllerCenter sentinelControllerCenter = new SentinelControllerCenter(SentinelConstant.SENTINEL_DEMOS_SERVICE_METHOD);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring/spring.xml");
         context.start();
         System.out.println("demo-provider-start................");

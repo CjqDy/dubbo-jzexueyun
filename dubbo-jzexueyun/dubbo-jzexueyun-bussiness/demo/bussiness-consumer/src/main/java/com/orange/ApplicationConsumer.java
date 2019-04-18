@@ -2,6 +2,8 @@ package com.orange;
 
 
 
+import com.alibaba.csp.sentinel.adapter.dubbo.fallback.DubboFallbackRegistry;
+import com.orange.dubbo.fallback.DemoFallback;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

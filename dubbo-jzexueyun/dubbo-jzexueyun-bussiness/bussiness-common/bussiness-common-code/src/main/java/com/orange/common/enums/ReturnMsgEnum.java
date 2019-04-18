@@ -113,7 +113,12 @@ public enum ReturnMsgEnum {
     /**
      * 原密码验证专用
      */
-    PASSWORD_ERROR(4018,"原密码输入错误");
+    PASSWORD_ERROR(4018,"原密码输入错误"),
+
+    /**
+     * Sentinel 限流异常
+     */
+    SENTINEL_ERROR(1001,"sentinel限流Exception");
 
     private int code;
 

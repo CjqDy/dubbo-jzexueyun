@@ -1,6 +1,7 @@
 package com.orange.dubbo.fallback;
 
 import com.alibaba.csp.sentinel.adapter.dubbo.fallback.DubboFallback;
+import com.alibaba.csp.sentinel.adapter.dubbo.fallback.DubboFallbackRegistry;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.alibaba.csp.sentinel.slots.block.SentinelRpcException;
 import com.alibaba.dubbo.rpc.Invocation;
@@ -29,4 +30,5 @@ public class DemoFallback implements DubboFallback {
         map.put("message", "QPS exceeded the threshold set by Sentinel : " + sb);
         return new RpcResult(new JSONObject(map).toJSONString());
     }
+
 }

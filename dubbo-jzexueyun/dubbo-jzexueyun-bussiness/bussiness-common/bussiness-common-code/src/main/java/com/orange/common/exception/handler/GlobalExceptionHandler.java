@@ -3,6 +3,7 @@ package com.orange.common.exception.handler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.orange.common.exception.ConfigException;
 import com.orange.common.exception.ParamException;
+import com.orange.common.exception.SentinelException;
 import com.orange.common.util.TransToUpperUtil;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
@@ -70,6 +71,18 @@ public class GlobalExceptionHandler {
 		Route route = new Route();
 		ResponseMsg responseMsg = new ResponseMsg(route,ReturnMsgEnum.PARAM_ERROR.getCode(),
 				ReturnMsgEnum.PARAM_ERROR.getMsg(), message);
+		return responseMsg;
+	}
+
+	@ExceptionHandler(SentinelException.class)
+	@ResponseBody
+	public ResponseMsg HandleSentinelException(Exception e){
+		//只能输出捕获到的异常，未捕获到的异常不输出到日志，或者通过aop拦截器拦截所有方法
+		String message = getExceptionDetail(e);
+		//返回失败信息
+		Route route = new Route();
+		ResponseMsg responseMsg = new ResponseMsg(route,ReturnMsgEnum.SENTINEL_ERROR.getCode(),
+				ReturnMsgEnum.SENTINEL_ERROR.getMsg(), message);
 		return responseMsg;
 	}
 

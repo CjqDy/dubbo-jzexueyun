@@ -22,7 +22,7 @@
 
         <dependency>
             <groupId>com.orange</groupId>
-            <artifactId>bussiness-common-interface</artifactId>
+            <artifactId>bussiness-common-code</artifactId>
             <version>${reversion}</version>
         </dependency>
 
