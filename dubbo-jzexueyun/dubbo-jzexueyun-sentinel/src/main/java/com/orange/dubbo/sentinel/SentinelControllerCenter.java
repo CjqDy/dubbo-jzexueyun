@@ -60,12 +60,11 @@ public class SentinelControllerCenter {
                 flowRuleList.add(flowRule);
             }
             if(SentinelConstant.SENTINEL_DEGRADERULE_TYPE.equals(map.get("type"))){
-                //降级熔断
+                //降级熔断/RT
                 DegradeRule degradeRule = initDegradeRule(map.get("sourceUri"),map.get("count"),map.get("grade"));
                 degradeRuleList.add(degradeRule);
             }
         }
-        System.out.println(flowRuleList);
         System.out.println(degradeRuleList);
         FlowRuleManager.loadRules(flowRuleList);
         DegradeRuleManager.loadRules(degradeRuleList);
@@ -95,8 +94,8 @@ public class SentinelControllerCenter {
         DegradeRule degradeRule = new DegradeRule();
         degradeRule.setResource(sentinelSource);
         degradeRule.setCount(Integer.parseInt(count));//ms
-        degradeRule.setGrade(Integer.parseInt(grade));//response time
-        degradeRule.setTimeWindow(10);
+        degradeRule.setGrade(RuleConstant.DEGRADE_GRADE_RT);//response time
+        degradeRule.setTimeWindow(10);//降级时间 //s
         return degradeRule;
     }
 

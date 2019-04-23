@@ -29,26 +29,48 @@ public class DemoServiceImpl implements DemoService {
 
     @Override
     public void sayHello() {
-        RedisUtil.set("haha","1111");
+//        RedisUtil.set("haha","1111");
+        try {
+            TimeUnit.MILLISECONDS.sleep(1000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         System.out.println("sayHello：success");
     }
 
     @Override
     public String sayHello3(String name) {
-        System.out.println("strat:"+LocalDateTime.now());
+
         try {
-            TimeUnit.MILLISECONDS.sleep(10);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        System.out.println("end:"+LocalDateTime.now());
         return String.format("Hello, %s at %s", name, LocalDateTime.now());
     }
 
     @Override
     public String sayHello4(String name) {
-        return null;
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return String.format("Hello, %s at %s", name, LocalDateTime.now());
+    }
+
+    @Override
+    public String sayHello5(String name) {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return String.format("Hello, %s at %s", name, LocalDateTime.now());
     }
 
 }

@@ -15,13 +15,13 @@ import com.orange.service.DemoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.Reference;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.Future;
 
 
 /**
@@ -49,29 +49,66 @@ public class DemoController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/sayHello2", method = RequestMethod.POST)
-    public void sayHello2(@RequestHeader(GeneralConstant.HEADER_NAME_UID) String userId) {
+    @RequestMapping(value = "/sayHello3", method = RequestMethod.POST)
+    public void sayHello3(@RequestHeader(GeneralConstant.HEADER_NAME_UID) String userId) {
+        //设置Thread阈值为7，即并发量为7
+        //实际结果为6~8条
         for (int i = 0; i < 10; i++) {
-            pool.submit(() -> {
-                try {
-                    //设置qps阈值在125左右，接口平均响应时间在35ms,计算结果在并发数为4~5条
-                    //实际结果为6~8条
-                    String message = demoService.sayHello3("world");
-                    System.out.println("Success: " + message+ LocalDateTime.now());
-                } catch (RpcException ex) {
-                    logger.info("blocked"+LocalDateTime.now());
-                } catch (SentinelRpcException ex) {
-                    logger.info("blocked22"+LocalDateTime.now());
-                }catch (Exception ex) {
-                    ex.printStackTrace();
+            final int a = i;
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        String message = demoService.sayHello3("Eric" + a);
+                        System.out.println("Success: " + a + "---" + message);
+                    } catch (RpcException ex) {
+                        System.out.println("Blocked" + a + "---");
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
                 }
-            });
-//            pool.submit(() -> {
-//                demoService.sayHello();
-//                System.out.println("hello 123"+LocalDateTime.now());
-//            });
+            }).start();
         }
+    }
 
+    @ResponseBody
+    @RequestMapping(value = "/sayHello4", method = RequestMethod.POST)
+    public void sayHello4(@RequestHeader(GeneralConstant.HEADER_NAME_UID) String userId) {
+//        设置QPS(每秒请求数)为6
+        for (int i = 0; i < 10; i++) {
+            final int a = i;
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        String message = demoService.sayHello4("Eric" + a);
+                        System.out.println("Success: " + a + "---" + message);
+                    } catch (RpcException ex) {
+                        System.out.println("Blocked" + a + "---");
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }).start();
+        }
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "/sayHello5", method = RequestMethod.POST)
+    public void sayHello5(@RequestHeader(GeneralConstant.HEADER_NAME_UID) String userId) {
+//      当资源的平均响应时间超过阈值（DegradeRule 中的 count，以 ms 为单位）之后，资源进入准降级状态。接下来如果持续进入 5 个请求，它们的 RT 都持续超过这个阈值，那么在接下的时间窗口（DegradeRule 中的 timeWindow，以 s 为单位）之内，对这个方法的调用都会自动地返回（抛出 DegradeException）
+        for (int i = 0; i < 10000; i++) {
+
+            try {
+                String message = demoService.sayHello5("Eric");
+                System.out.println("Success: " + "---" + i + message);
+            } catch (RpcException ex) {
+                System.out.println("Blocked" + i + "---");
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
     }
 
 

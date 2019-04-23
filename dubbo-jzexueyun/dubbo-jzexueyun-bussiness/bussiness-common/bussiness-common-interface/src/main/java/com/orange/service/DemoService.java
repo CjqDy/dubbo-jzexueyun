@@ -14,4 +14,6 @@ public interface DemoService {
     public String sayHello3(String name);
 
     public String sayHello4(String name);
+
+    public String sayHello5(String name);
 }
