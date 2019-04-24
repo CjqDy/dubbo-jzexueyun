@@ -25,6 +25,7 @@ import javax.annotation.PostConstruct;
 public class ApplicationConsumer {
 
 
+
     public static void main(String[] args) {
         SpringApplication.run(ApplicationConsumer.class,args);
         System.out.println("demo-consumer-start................");

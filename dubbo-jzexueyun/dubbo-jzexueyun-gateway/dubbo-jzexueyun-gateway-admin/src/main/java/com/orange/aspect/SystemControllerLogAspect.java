@@ -9,11 +9,8 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
-import org.eclipse.core.internal.resources.LinkDescription;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -25,12 +22,10 @@ import java.lang.reflect.Method;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * @program: dubbo-jzexueyun
- * @description: SystemControllerLogAspect
+ * @description: 该切面用来记录所有用户的操作行为（通过具体在方法上加标记）
  * @author: chengjiaqi
  * @create: 2019/04/24 10:38
  **/
@@ -90,7 +85,7 @@ public class SystemControllerLogAspect {
             synchronized (this) {
                 list.add(action);
                 System.out.println("size :" + list.size());
-                //1.达到处理的条数  2.比较上一条超过超时间 ，立即处理
+                //1.达到处理的条数  2.比较上一条超过超时时间 ，立即处理
                 if (number == list.size() || ((new Date().getTime() - date.getTime()) > time) && list.size() > 1) {
                     res = list;
                     date = new Date();
