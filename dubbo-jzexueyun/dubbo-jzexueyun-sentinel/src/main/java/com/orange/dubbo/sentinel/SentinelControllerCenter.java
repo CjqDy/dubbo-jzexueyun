@@ -1,29 +1,22 @@
 package com.orange.dubbo.sentinel;
 
-import com.alibaba.csp.sentinel.adapter.dubbo.fallback.DubboFallbackRegistry;
 import com.alibaba.csp.sentinel.slots.block.RuleConstant;
 import com.alibaba.csp.sentinel.slots.block.degrade.DegradeRule;
 import com.alibaba.csp.sentinel.slots.block.degrade.DegradeRuleManager;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRuleManager;
-import com.alibaba.dubbo.rpc.RpcResult;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.orange.common.contants.GeneralConstant;
 import com.orange.common.contants.SentinelConstant;
 import com.orange.common.util.PropertiesFileUtil;
-import com.orange.dubbo.fallback.DemoFallback;
-import org.springframework.stereotype.Component;
-
-
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 /**
  * @program: dubbo-jzexueyun
- * @description:sentinel 控制器
+ * @description:sentinel sentinel控制器
  * @author: chengjiaqi
  * @create: 2019/04/16 17:58
  **/
@@ -52,6 +45,9 @@ public class SentinelControllerCenter {
     }
 
 
+    /**
+     * 初始化sentinel
+     */
     private static void init(){
         for(Map<String,String> map : list){
             if(SentinelConstant.SENTINEL_FLOWRULE_TYPE.equals(map.get("type"))){
@@ -65,13 +61,16 @@ public class SentinelControllerCenter {
                 degradeRuleList.add(degradeRule);
             }
         }
-        System.out.println(degradeRuleList);
         FlowRuleManager.loadRules(flowRuleList);
         DegradeRuleManager.loadRules(degradeRuleList);
     }
 
     /**
-     * QPS/并发线程数
+     * 流量规则定义
+     * @param sentinelSource
+     * @param count
+     * @param grade
+     * @return
      */
     private static FlowRule initFlowRule(String sentinelSource,String count,String grade) {
         FlowRule flowRule = new FlowRule();
@@ -85,9 +84,10 @@ public class SentinelControllerCenter {
 
 
     /**
+     * 降级规则定义
      * @param sentinelSource
      * @param count
-     * response time
+     * @param grade
      * @return
      */
     private static  DegradeRule initDegradeRule(String sentinelSource,String count,String grade) {

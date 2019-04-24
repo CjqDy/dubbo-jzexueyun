@@ -1,12 +1,11 @@
-package com.orange.filter;
+package com.orange.bussinessFilter;
 
 import com.alibaba.fastjson.JSONObject;
 import com.orange.common.contants.GeneralConstant;
-import com.orange.common.enums.ReturnMsgEnum;
-import com.orange.common.exception.handler.GlobalExceptionHandler;
-import com.orange.common.response.ResponseMsg;
-import com.orange.common.response.Route;
+import com.orange.common.exception.ParamException;
 import com.orange.common.util.PropertiesFileUtil;
+import com.orange.common.util.SessionLocalUtil;
+import com.orange.common.util.UserInfo;
 import org.apache.commons.lang.StringUtils;
 
 import javax.servlet.*;
@@ -24,11 +23,11 @@ import java.util.*;
 
 /**
  * @program: dubbo-jzexueyun
- * @description: 业务接口过滤器
+ * @description: 业务接口过滤器 //业务请求路径：
  * @author: chengjiaqi
  * @create: 2019/04/10 15:39
  **/
-@WebFilter(urlPatterns = "/*")
+@WebFilter("/*")
 public class SessionFilter implements Filter {
 
     private static PropertiesFileUtil propertiesFileUtil = PropertiesFileUtil
@@ -45,50 +44,32 @@ public class SessionFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("-------------enter session filter");
         //TODO: bussiness auth operation
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        HttpSession session = request.getSession(false);
         String uri = request.getRequestURI();
-        //Filter the interface address without authentication
-        if(isTokenExcludeUrl(uri)){
+        //Filter interface address without authentication
+        if (isTokenExcludeUrl(uri)) {
             filterChain.doFilter(request, response);
             return;
         }
         MutableHttpServletRequest requestWrapper = null;
-        if(request instanceof HttpServletRequest) {
+        if (request instanceof HttpServletRequest) {
             requestWrapper = new MutableHttpServletRequest((HttpServletRequest) request);
         }
-        String body = getRequestbody(requestWrapper);
-        String token = "",servCode = "", tranSid = "" , sysSign = "";
-        //TODO:validate interface and user data start
-        //获取body中的鉴权码和token
-//        try {
-//            net.sf.json.JSONObject jsonObject = new net.sf.json.JSONObject();
-//            jsonObject = jsonObject.fromObject(body);//将String转为JSON数据
-//            token =  jsonObject.fromObject(jsonObject.getString("ROUTE")).getString("ACCESSTOKEN");
-//            servCode = jsonObject.fromObject(jsonObject.getString("ROUTE")).getString("SERVCODE");
-//            tranSid = jsonObject.fromObject(jsonObject.getString("ROUTE")).getString("TRANSID");
-//            sysSign = jsonObject.fromObject(jsonObject.getString("ROUTE")).getString("SYSSIGN");
-//        } catch (Exception e) {
-//            // TODO: handle exception
-//            //ResultModel resultModel = new ResultModel(ReturnMsgEnum.TOKEN_ILLEGAL.getCode(),
-//            //ReturnMsgEnum.TOKEN_ILLEGAL.getMsg(), null, System.currentTimeMillis());
-//            Route route = new Route();
-//            ResponseMsg responseMsg = new ResponseMsg(route, ReturnMsgEnum.TOKEN_ILLEGAL.getCode(),
-//                    ReturnMsgEnum.TOKEN_ILLEGAL.getMsg(), "");
-//            GlobalExceptionHandler.responseJsonRes(response, responseMsg);
-//            return;
-//        }
+//       Request parameter authentication
+        new DoRequestInfo(getRequestbody(requestWrapper)).requestInfo();
 
-        //end
         //userId Package to Header
-        //E.g:requestWrapper.putHeader("userId", "1111");
+        //E.g:requestWrapper.putHeader("userId", userInfo.getUserId);
         //TODO:invoke auth center bussiness
         requestWrapper.putHeader(GeneralConstant.HEADER_NAME_UID, "1111");
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUserId("1111");
+        userInfo.setUserName("chengjiaqi");
+        SessionLocalUtil.setUser(userInfo);
         // return request infomation
-        if(requestWrapper == null) {
+        if (requestWrapper == null) {
             filterChain.doFilter(request, response);
         } else {
             filterChain.doFilter(requestWrapper, response);
@@ -101,16 +82,16 @@ public class SessionFilter implements Filter {
     }
 
     private String getRequestbody(HttpServletRequest request) {
-        String param= null;
+        String param = null;
         try {
-            BufferedReader streamReader = new BufferedReader( new InputStreamReader(request.getInputStream(), "UTF-8"));
+            BufferedReader streamReader = new BufferedReader(new InputStreamReader(request.getInputStream(), "UTF-8"));
             StringBuilder responseStrBuilder = new StringBuilder();
             String inputStr;
             while ((inputStr = streamReader.readLine()) != null)
                 responseStrBuilder.append(inputStr);
 
             JSONObject jsonObject = JSONObject.parseObject(responseStrBuilder.toString());
-            param= jsonObject.toJSONString();
+            param = jsonObject.toJSONString();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -133,6 +114,7 @@ public class SessionFilter implements Filter {
 
         return false;
     }
+
     private class MutableHttpServletRequest extends HttpServletRequestWrapper {
 
 

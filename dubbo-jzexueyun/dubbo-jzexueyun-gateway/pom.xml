@@ -10,6 +10,38 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>dubbo-jzexueyun-gateway</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>dubbo-jzexueyun-gateway-core</module>
+        <module>dubbo-jzexueyun-gateway-admin</module>
+        <module>dubbo-jzexueyun-gateway-monitor</module>
+    </modules>
 
+
+    <dependencies>
+        <dependency>
+            <groupId>com.orange</groupId>
+            <artifactId>bussiness-common-code</artifactId>
+            <version>${reversion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+        </dependency>
+
+    </dependencies>
 
 </project>

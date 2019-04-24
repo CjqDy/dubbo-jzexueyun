@@ -19,7 +19,7 @@ initFlowRule 和 initDegradeRule
 
 
 添加系统配置文件:sentinel.properties 
-加上需要处理的服务或者具体的方法，目前通过json同意配置
+加上需要处理的服务或者具体的方法，目前通过json统一配置
 
 
 ## type 0:多线程并发控制  1:：熔断降级
@@ -36,6 +36,7 @@ SentinelControllerCenter sentinelControllerCenter = new SentinelControllerCenter
 
 抛出异常：SentinelRpcException  
 ps：目前dubbo 捕获SentinelRpcException异常存在一些问题
+    捕获RpcExcption异常
 
 
 

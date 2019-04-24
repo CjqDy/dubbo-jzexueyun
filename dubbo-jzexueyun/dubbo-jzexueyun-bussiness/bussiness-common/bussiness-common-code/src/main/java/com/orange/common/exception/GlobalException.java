@@ -6,7 +6,7 @@ package com.orange.common.exception;
  * @author: chengjiaqi
  * @create: 2019/04/08 17:50
  **/
-public class GlobalException extends Exception{
+public class GlobalException extends BaseException{
 
 	private static final long serialVersionUID = 1L;
 

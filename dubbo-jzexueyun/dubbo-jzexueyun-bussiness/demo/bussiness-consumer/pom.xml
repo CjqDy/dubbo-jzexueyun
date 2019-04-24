@@ -34,6 +34,18 @@
 
         <dependency>
             <groupId>com.orange</groupId>
+            <artifactId>dubbo-jzexueyun-gateway-core</artifactId>
+            <version>${reversion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.orange</groupId>
+            <artifactId>dubbo-jzexueyun-gateway-admin</artifactId>
+            <version>${reversion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.orange</groupId>
             <artifactId>bussiness-common-interface</artifactId>
             <version>${reversion}</version>
         </dependency>
