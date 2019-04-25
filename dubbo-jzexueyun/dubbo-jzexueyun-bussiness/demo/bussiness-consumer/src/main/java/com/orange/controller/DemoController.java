@@ -74,7 +74,6 @@ public class DemoController {
 
     @ResponseBody
     @RequestMapping(value = "/sayHello4", method = RequestMethod.POST)
-    @SystemControllerLog(method = "sayHello4",desc = "haha")
     public void sayHello4(@RequestHeader(GeneralConstant.HEADER_NAME_UID) String userId) {
 //        设置QPS(每秒请求数)为6
         for (int i = 0; i < 10; i++) {

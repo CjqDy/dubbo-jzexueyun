@@ -108,7 +108,7 @@ public class SystemControllerLogAspect {
 
 
     /**
-     * @author changyaofang
+     * @author chengjiaqi
      * @Description 获取注解中对方法的描述信息 用于Controller层注解
      * @date 2018年9月3日 上午12:01
      */

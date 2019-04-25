@@ -27,6 +27,10 @@ public class ApplicationConsumer {
 
 
     public static void main(String[] args) {
+
+        DubboFallbackRegistry.setProviderFallback(new DemoFallback());
+
+
         SpringApplication.run(ApplicationConsumer.class,args);
         System.out.println("demo-consumer-start................");
     }
