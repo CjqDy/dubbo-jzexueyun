@@ -22,20 +22,23 @@
        http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
 
     <!-- provider's application name, used for tracing dependency relationship -->
-    <dubbo:application name="${dubbo.application.name}"/>
+    <dubbo:application name="${dubbo.application.name}">
+        <dubbo:parameter key="qos.enable" value="true"/>
+        <dubbo:parameter key="qos.accept.foreign.ip" value="false"/>
+        <dubbo:parameter key="qos.port" value="${dubbo.application.qosPort}"/>
+    </dubbo:application>
 
     <dubbo:registry address="${dubbo.registry.address}" check="false"/>
+    <dubbo:protocol name="dubbo" port="${dubbo.protocol.port}"
+                    threads="1500" dispatcher="message" />
 
-    <!-- use dubbo protocol to export service on port 20880 -->
-    <dubbo:protocol name="dubbo"/>
+
 
     <!-- service implementation, as same as regular local bean -->
     <bean id="sysRoleService" class="com.orange.service.impl.SysRoleServiceImpl"/>
 
     <!-- declare the service interface to be exported -->
     <dubbo:service interface="com.orange.auth.service.SysRoleService" ref="sysRoleService" timeout="60000"/>
-
-
 
 
 </beans>
