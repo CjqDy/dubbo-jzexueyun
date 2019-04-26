@@ -10,6 +10,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>public-auth-center</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>public-auth-center-service</module>
+        <module>public-auth-center-consumer</module>
+    </modules>
 
 
 </project>

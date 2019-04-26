@@ -180,7 +180,7 @@
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
                             <!-- 主方法所在类名 -->
-                            <mainClass>com.orange.ProviderApplication</mainClass>
+                            <mainClass>com.orange.AuthProviderApplication</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

@@ -74,6 +74,9 @@ public class SystemControllerLogAspect {
 
         String ip = getIpAddr(request);
 
+        if (list.size() == 0) {
+            date = new Date();
+        }
         try {
             Action action = new Action();
             action.setActionMethod(joinPoint.getTarget().getClass().getName() + "." + joinPoint.getSignature().getName());
@@ -86,7 +89,8 @@ public class SystemControllerLogAspect {
                 list.add(action);
                 System.out.println("size :" + list.size());
                 //1.达到处理的条数  2.比较上一条超过超时时间 ，立即处理
-                if (number == list.size() || ((new Date().getTime() - date.getTime()) > time) && list.size() > 1) {
+                System.out.println((new Date().getTime() - date.getTime()));
+                if (number == list.size() || ((new Date().getTime() - date.getTime()) > time)) {
                     res = list;
                     date = new Date();
 //                    TODO:处理集合数据

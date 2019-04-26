@@ -23,12 +23,7 @@ import java.util.Map;
 public class DemoFallback implements DubboFallback {
     @Override
     public Result handle(Invoker<?> invoker, Invocation invocation, BlockException e) {
-        StringBuffer sb = new StringBuffer();
-        sb.append(invoker.getInterface().toString());
-        Map<String, Object> map = new HashMap<>(2);
-        map.put("code", "120023");
-        map.put("message", "QPS exceeded the threshold set by Sentinel : " + sb);
-        return new RpcResult(new JSONObject(map).toJSONString());
+        return new RpcResult(new SentinelRpcException(e));
     }
 
 }

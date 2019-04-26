@@ -14,11 +14,31 @@ import java.util.Map;
  **/
 public class DateUtil {
 
+    public static final String DATE_FORMAT_DEFAULT = "yyyy-MM-dd HH:mm:ss";
+    public static final String DATE_FORMAT_YYYY_MM_DD = "yyyy-MM-dd";
+
+    public static final String DATE_FORMAT_YYYY_MM = "yyyy-MM";
+
+    public static final String DATE_FORMAT_HH_MM_SS = "HH:mm:ss";
+
+    public static final String DATE_FORMAT_DEFAULT_CHINESE_PATTERN = "yyyy年MM月dd日 HH:mm:ss";
+
+    public static final String DATE_FORMAT_HH_MM = "yyyy-MM-dd HH:mm";
+
+    public static final String TIME_ZONE_CN = "GMT+8";
+
+
+
     /** 锁对象 */
     private static final Object lockObj = new Object();
 
     /** 存放不同的日期模板格式的sdf的Map */
     private static Map<String, ThreadLocal<SimpleDateFormat>> sdfMap = new HashMap<String, ThreadLocal<SimpleDateFormat>>();
+
+
+    public static Date getNowTime() {
+        return new Date();
+    }
 
     /**
      * 返回一个ThreadLocal的sdf,每个线程只会new一次sdf

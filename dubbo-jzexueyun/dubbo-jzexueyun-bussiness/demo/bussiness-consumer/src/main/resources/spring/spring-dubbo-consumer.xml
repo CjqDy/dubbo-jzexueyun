@@ -33,6 +33,6 @@
     <!-- use dubbo protocol to export service on port 20880 -->
     <dubbo:protocol name="dubbo"/>
 
-    <dubbo:reference id="demoService" interface="com.orange.service.DemoService" check="false"/>
+    <dubbo:reference id="demoService" interface="com.orange.demo.service.DemoService" check="false"/>
 
 </beans>

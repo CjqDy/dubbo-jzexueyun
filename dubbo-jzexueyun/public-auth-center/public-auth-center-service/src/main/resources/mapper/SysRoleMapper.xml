@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.orange.dao.SysRoleMapper">
+  <resultMap id="BaseResultMap" type="com.orange.entity.authcenter.SysRole">
+    <id column="p_id" jdbcType="VARCHAR" property="pId" />
+    <result column="f_system_id" jdbcType="CHAR" property="fSystemId" />
+    <result column="s_name" jdbcType="VARCHAR" property="sName" />
+    <result column="s_desc" jdbcType="VARCHAR" property="sDesc" />
+    <result column="s_type" jdbcType="CHAR" property="sType" />
+    <result column="s_creator" jdbcType="VARCHAR" property="sCreator" />
+    <result column="s_creater_time" jdbcType="TIMESTAMP" property="sCreaterTime" />
+    <result column="s_update_time" jdbcType="TIMESTAMP" property="sUpdateTime" />
+    <result column="s_updater" jdbcType="VARCHAR" property="sUpdater" />
+    <result column="inst_id" jdbcType="VARCHAR" property="instId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    p_id, f_system_id, s_name, s_desc, s_type, s_creator, s_creater_time, s_update_time, 
+    s_updater, inst_id
+  </sql>
+  <select id="selectByExample" parameterType="com.orange.entity.authcenter.SysRoleExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_sys_role
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_sys_role
+    where p_id = #{pId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_sys_role
+    where p_id = #{pId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.orange.entity.authcenter.SysRoleExample">
+    delete from t_sys_role
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.orange.entity.authcenter.SysRole">
+    insert into t_sys_role (p_id, f_system_id, s_name, 
+      s_desc, s_type, s_creator, 
+      s_creater_time, s_update_time, s_updater, 
+      inst_id)
+    values (#{pId,jdbcType=VARCHAR}, #{fSystemId,jdbcType=CHAR}, #{sName,jdbcType=VARCHAR}, 
+      #{sDesc,jdbcType=VARCHAR}, #{sType,jdbcType=CHAR}, #{sCreator,jdbcType=VARCHAR}, 
+      #{sCreaterTime,jdbcType=TIMESTAMP}, #{sUpdateTime,jdbcType=TIMESTAMP}, #{sUpdater,jdbcType=VARCHAR}, 
+      #{instId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.orange.entity.authcenter.SysRole">
+    insert into t_sys_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pId != null">
+        p_id,
+      </if>
+      <if test="fSystemId != null">
+        f_system_id,
+      </if>
+      <if test="sName != null">
+        s_name,
+      </if>
+      <if test="sDesc != null">
+        s_desc,
+      </if>
+      <if test="sType != null">
+        s_type,
+      </if>
+      <if test="sCreator != null">
+        s_creator,
+      </if>
+      <if test="sCreaterTime != null">
+        s_creater_time,
+      </if>
+      <if test="sUpdateTime != null">
+        s_update_time,
+      </if>
+      <if test="sUpdater != null">
+        s_updater,
+      </if>
+      <if test="instId != null">
+        inst_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pId != null">
+        #{pId,jdbcType=VARCHAR},
+      </if>
+      <if test="fSystemId != null">
+        #{fSystemId,jdbcType=CHAR},
+      </if>
+      <if test="sName != null">
+        #{sName,jdbcType=VARCHAR},
+      </if>
+      <if test="sDesc != null">
+        #{sDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sType != null">
+        #{sType,jdbcType=CHAR},
+      </if>
+      <if test="sCreator != null">
+        #{sCreator,jdbcType=VARCHAR},
+      </if>
+      <if test="sCreaterTime != null">
+        #{sCreaterTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sUpdateTime != null">
+        #{sUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sUpdater != null">
+        #{sUpdater,jdbcType=VARCHAR},
+      </if>
+      <if test="instId != null">
+        #{instId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.orange.entity.authcenter.SysRoleExample" resultType="java.lang.Long">
+    select count(*) from t_sys_role
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_sys_role
+    <set>
+      <if test="record.pId != null">
+        p_id = #{record.pId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fSystemId != null">
+        f_system_id = #{record.fSystemId,jdbcType=CHAR},
+      </if>
+      <if test="record.sName != null">
+        s_name = #{record.sName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sDesc != null">
+        s_desc = #{record.sDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sType != null">
+        s_type = #{record.sType,jdbcType=CHAR},
+      </if>
+      <if test="record.sCreator != null">
+        s_creator = #{record.sCreator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sCreaterTime != null">
+        s_creater_time = #{record.sCreaterTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sUpdateTime != null">
+        s_update_time = #{record.sUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sUpdater != null">
+        s_updater = #{record.sUpdater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.instId != null">
+        inst_id = #{record.instId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_sys_role
+    set p_id = #{record.pId,jdbcType=VARCHAR},
+      f_system_id = #{record.fSystemId,jdbcType=CHAR},
+      s_name = #{record.sName,jdbcType=VARCHAR},
+      s_desc = #{record.sDesc,jdbcType=VARCHAR},
+      s_type = #{record.sType,jdbcType=CHAR},
+      s_creator = #{record.sCreator,jdbcType=VARCHAR},
+      s_creater_time = #{record.sCreaterTime,jdbcType=TIMESTAMP},
+      s_update_time = #{record.sUpdateTime,jdbcType=TIMESTAMP},
+      s_updater = #{record.sUpdater,jdbcType=VARCHAR},
+      inst_id = #{record.instId,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.orange.entity.authcenter.SysRole">
+    update t_sys_role
+    <set>
+      <if test="fSystemId != null">
+        f_system_id = #{fSystemId,jdbcType=CHAR},
+      </if>
+      <if test="sName != null">
+        s_name = #{sName,jdbcType=VARCHAR},
+      </if>
+      <if test="sDesc != null">
+        s_desc = #{sDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sType != null">
+        s_type = #{sType,jdbcType=CHAR},
+      </if>
+      <if test="sCreator != null">
+        s_creator = #{sCreator,jdbcType=VARCHAR},
+      </if>
+      <if test="sCreaterTime != null">
+        s_creater_time = #{sCreaterTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sUpdateTime != null">
+        s_update_time = #{sUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sUpdater != null">
+        s_updater = #{sUpdater,jdbcType=VARCHAR},
+      </if>
+      <if test="instId != null">
+        inst_id = #{instId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where p_id = #{pId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.orange.entity.authcenter.SysRole">
+    update t_sys_role
+    set f_system_id = #{fSystemId,jdbcType=CHAR},
+      s_name = #{sName,jdbcType=VARCHAR},
+      s_desc = #{sDesc,jdbcType=VARCHAR},
+      s_type = #{sType,jdbcType=CHAR},
+      s_creator = #{sCreator,jdbcType=VARCHAR},
+      s_creater_time = #{sCreaterTime,jdbcType=TIMESTAMP},
+      s_update_time = #{sUpdateTime,jdbcType=TIMESTAMP},
+      s_updater = #{sUpdater,jdbcType=VARCHAR},
+      inst_id = #{instId,jdbcType=VARCHAR}
+    where p_id = #{pId,jdbcType=VARCHAR}
+  </update>
+</mapper>

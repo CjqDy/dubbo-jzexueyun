@@ -33,6 +33,6 @@
     <bean id="demoService" class="com.orange.service.impl.DemoServiceImpl"/>
 
     <!-- declare the service interface to be exported -->
-    <dubbo:service interface="com.orange.service.DemoService" ref="demoService" timeout="60000"/>
+    <dubbo:service interface="com.orange.demo.service.DemoService" ref="demoService" timeout="60000"/>
 
 </beans>

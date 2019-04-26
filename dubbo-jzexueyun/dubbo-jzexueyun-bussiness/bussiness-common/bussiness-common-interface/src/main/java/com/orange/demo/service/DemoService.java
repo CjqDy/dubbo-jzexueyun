@@ -1,4 +1,4 @@
-package com.orange.service;
+package com.orange.demo.service;
 
 /**
  * @program: dubbo-jzexueyun
