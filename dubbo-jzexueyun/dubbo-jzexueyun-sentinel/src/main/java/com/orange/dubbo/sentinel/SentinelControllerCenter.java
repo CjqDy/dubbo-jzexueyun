@@ -1,5 +1,6 @@
 package com.orange.dubbo.sentinel;
 
+import com.alibaba.csp.sentinel.adapter.dubbo.fallback.DubboFallbackRegistry;
 import com.alibaba.csp.sentinel.slots.block.RuleConstant;
 import com.alibaba.csp.sentinel.slots.block.degrade.DegradeRule;
 import com.alibaba.csp.sentinel.slots.block.degrade.DegradeRuleManager;
@@ -10,6 +11,8 @@ import com.alibaba.fastjson.JSONArray;
 import com.orange.common.contants.GeneralConstant;
 import com.orange.common.contants.SentinelConstant;
 import com.orange.common.util.PropertiesFileUtil;
+import com.orange.dubbo.fallback.DemoFallback;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;

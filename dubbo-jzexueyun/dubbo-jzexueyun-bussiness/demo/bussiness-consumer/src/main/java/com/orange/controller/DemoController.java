@@ -1,28 +1,20 @@
 package com.orange.controller;
 
-import com.alibaba.csp.sentinel.adapter.dubbo.fallback.DubboFallbackRegistry;
 import com.alibaba.csp.sentinel.concurrent.NamedThreadFactory;
-import com.alibaba.csp.sentinel.slots.block.SentinelRpcException;
-import com.alibaba.csp.sentinel.slots.block.flow.FlowException;
 import com.alibaba.dubbo.rpc.RpcException;
 import com.orange.common.contants.GeneralConstant;
-import com.orange.common.exception.BaseException;
 import com.orange.common.exception.ParamException;
-import com.orange.common.exception.SentinelException;
 import com.orange.common.response.RequestMsg;
 import com.orange.common.response.ResponseMsg;
 import com.orange.log.aop.SystemControllerLog;
-import com.orange.service.DemoService;
+import com.orange.demo.service.DemoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 
 /**
@@ -74,8 +66,8 @@ public class DemoController {
 
     @ResponseBody
     @RequestMapping(value = "/sayHello4", method = RequestMethod.POST)
-    @SystemControllerLog(method = "sayHello4",desc = "haha")
-    public void sayHello4(@RequestHeader(GeneralConstant.HEADER_NAME_UID) String userId) {
+    @SystemControllerLog(method = "sayHello4",desc = "hello")
+    public ResponseMsg sayHello4(@RequestHeader(GeneralConstant.HEADER_NAME_UID) String userId, @RequestBody RequestMsg requestMsg) {
 //        设置QPS(每秒请求数)为6
         for (int i = 0; i < 10; i++) {
             final int a = i;
@@ -86,13 +78,14 @@ public class DemoController {
                         String message = demoService.sayHello4("Eric" + a);
                         System.out.println("Success: " + a + "---" + message);
                     } catch (RpcException ex) {
-                        System.out.println("Blocked" + a + "---");
+                        logger.info("blocked RPC"+ a);
                     } catch (Exception ex) {
-                        ex.printStackTrace();
+                        logger.info("blocked EX"+ a);
                     }
                 }
             }).start();
         }
+        return new ResponseMsg(requestMsg.getRoute(), GeneralConstant.SUCCESS, "查询成功", null);
     }
 
 

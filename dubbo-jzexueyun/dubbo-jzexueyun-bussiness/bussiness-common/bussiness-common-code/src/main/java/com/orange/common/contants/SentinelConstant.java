@@ -11,7 +11,10 @@ public class SentinelConstant {
      * 测试熔断资源
      */
     public static final String SENTINEL_DEMOS_SERVICE_METHOD = "sentinel.demo";
-
+    /**
+     * 测试熔断资源
+     */
+    public static final String SENTINEL_AUTH_SERVICE_METHOD = "sentinel.auth";
 
     /**
      * 规则类型

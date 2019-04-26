@@ -13,7 +13,7 @@
 	<!-- 数据库事务,自动扫描到包名 -->
 	<aop:config>
 		<aop:pointcut id="interceptorPointCuts"
-			expression="execution(public * com.orange.service.*.*(..))" />
+			expression="execution(public * com.orange.demo.service.*.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="interceptorPointCuts" />
 	</aop:config>
 

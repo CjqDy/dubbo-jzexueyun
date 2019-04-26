@@ -4,7 +4,7 @@ package com.orange.service.impl;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.orange.common.util.RedisUtil;
 import com.orange.dao.UserBaseMapper;
-import com.orange.service.DemoService;
+import com.orange.demo.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;

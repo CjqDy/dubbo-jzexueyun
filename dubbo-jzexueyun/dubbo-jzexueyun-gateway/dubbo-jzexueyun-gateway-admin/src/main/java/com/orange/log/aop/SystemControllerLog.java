@@ -4,9 +4,9 @@ import java.lang.annotation.*;
 
 /**
  * @program: dubbo-jzexueyun
- * @description: SystemControllerLog
- * @author: Mr.Wang
- * @create: 2019/04/24 10:35
+ * @description: 注解标记
+ * @author: chengjiaqi
+ * @create: 2019/04/24 15:40
  **/
 @Target({ElementType.PARAMETER, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

@@ -27,8 +27,8 @@ initFlowRule 和 initDegradeRule
 ## count 并发量或者超时时间
 sentinel.demo =\
   [\
-   {"sourceUri":"com.orange.service.DemoService:sayHello()","type":"0","count":"10"},\
-   {"sourceUri":"com.orange.service.DemoService:sayHello3(java.lang.String)","type":"1","count":"200"} \
+   {"sourceUri":"com.orange.demo.service.DemoService:sayHello()","type":"0","count":"10"},\
+   {"sourceUri":"com.orange.demo.service.DemoService:sayHello3(java.lang.String)","type":"1","count":"200"} \
   ]
   
 在服务启动前先初始化
