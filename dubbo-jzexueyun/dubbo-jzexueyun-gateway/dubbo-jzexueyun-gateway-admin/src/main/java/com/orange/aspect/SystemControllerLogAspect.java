@@ -43,9 +43,9 @@ public class SystemControllerLogAspect {
 
     private List<Action> res = new LinkedList<Action>();
 
-    //集合中满50条数据处理
-    private final int number = 5;
-    //设置超时时间为10秒
+    //=50条数据处理
+    private final int number = 50;
+    //设置距离上次超时时间为10秒
     private final long time = 10000;
 
     //记录最后一次上传时间

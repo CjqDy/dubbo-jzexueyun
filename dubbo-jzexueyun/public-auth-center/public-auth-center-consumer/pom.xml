@@ -117,7 +117,7 @@
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
                             <!-- 主方法所在类名 -->
-                            <mainClass>com.orange.ApplicationConsumer</mainClass>
+                            <mainClass>com.orange.AuthConsumerApplication</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

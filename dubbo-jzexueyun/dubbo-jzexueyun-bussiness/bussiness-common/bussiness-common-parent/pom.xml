@@ -49,6 +49,13 @@
             <artifactId>dubbo-registry-nacos</artifactId>
             <version>0.0.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.nacos</groupId>
+            <artifactId>nacos-spring-context</artifactId>
+            <version>0.2.2-RC1</version>
+        </dependency>
+
         <!--<dependency>-->
             <!--<groupId>org.apache.dubbo</groupId>-->
             <!--<artifactId>dubbo</artifactId>-->

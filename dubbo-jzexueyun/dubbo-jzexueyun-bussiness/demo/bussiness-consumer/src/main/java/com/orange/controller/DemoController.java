@@ -2,17 +2,22 @@ package com.orange.controller;
 
 import com.alibaba.csp.sentinel.concurrent.NamedThreadFactory;
 import com.alibaba.dubbo.rpc.RpcException;
+import com.alibaba.nacos.api.config.annotation.NacosProperty;
+import com.alibaba.nacos.api.config.annotation.NacosValue;
+import com.orange.ApplicationConsumer;
 import com.orange.common.contants.GeneralConstant;
-import com.orange.common.exception.ParamException;
 import com.orange.common.response.RequestMsg;
 import com.orange.common.response.ResponseMsg;
+import com.orange.common.util.NacosDataConvert;
 import com.orange.log.aop.SystemControllerLog;
 import com.orange.demo.service.DemoService;
+import com.orange.util.NacosBussinessConsumerAutoConfigCenter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -31,6 +36,8 @@ public class DemoController {
     @Autowired
     private DemoService demoService;
 
+    @NacosValue(value = "${chengjiaqi}",autoRefreshed = true)
+    private String chengjiaqi;
 
     private static final ExecutorService pool = Executors.newFixedThreadPool(10,
             new NamedThreadFactory("dubbo-consumer-pool"));
@@ -66,9 +73,9 @@ public class DemoController {
 
     @ResponseBody
     @RequestMapping(value = "/sayHello4", method = RequestMethod.POST)
-    @SystemControllerLog(method = "sayHello4",desc = "hello")
+    @SystemControllerLog(method = "sayHello4", desc = "hello")
     public ResponseMsg sayHello4(@RequestHeader(GeneralConstant.HEADER_NAME_UID) String userId, @RequestBody RequestMsg requestMsg) {
-//        设置QPS(每秒请求数)为6
+        //        设置QPS(每秒请求数)为6
         for (int i = 0; i < 10; i++) {
             final int a = i;
             new Thread(new Runnable() {
@@ -78,9 +85,9 @@ public class DemoController {
                         String message = demoService.sayHello4("Eric" + a);
                         System.out.println("Success: " + a + "---" + message);
                     } catch (RpcException ex) {
-                        logger.info("blocked RPC"+ a);
+                        logger.info("blocked RPC" + a);
                     } catch (Exception ex) {
-                        logger.info("blocked EX"+ a);
+                        logger.info("blocked EX" + a);
                     }
                 }
             }).start();
@@ -110,12 +117,11 @@ public class DemoController {
     @ResponseBody
     @RequestMapping(value = "/test", method = RequestMethod.POST)
     public ResponseMsg test(@RequestHeader("Uid") String userId, @RequestBody RequestMsg requestMsg) {
-        System.out.println();
-        if (!"1233".equals(userId)) {
-            throw new ParamException("base error");
-        }
-        System.out.println("no param");
-        demoService.sayHello();
+//        System.out.println(ApplicationConsumer.properties.get("chengjiaqi"));
+        System.out.println(chengjiaqi);
+        Map s = NacosDataConvert.NacosConvert(NacosBussinessConsumerAutoConfigCenter.res);
+        System.out.println(s);
+        System.out.println(s.get("chengjiaqi"));
         return new ResponseMsg(requestMsg.getRoute(), GeneralConstant.SUCCESS, "查询成功", null);
     }
 

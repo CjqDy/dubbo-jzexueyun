@@ -15,17 +15,14 @@
             <list>
                 <value>classpath:application.properties</value>
                 <value>classpath:common.properties</value>
-                <!-- <value>classpath:mongodb.properties</value> -->
             </list>
         </property>
     </bean>
 
-
+    <import resource="nacos.xml"/>
     <import resource="spring-dubbo-consumer.xml"/>
 
-    <!--<import resource="spring-dao.xml" />-->
-    <!--<import resource="spring-dubbo-consumer.xml" />-->
-    <!--&lt;!&ndash; <import resource="spring-mongodb.xml" /> &ndash;&gt;-->
-    <!--<import resource="spring-rabbitmq.xml" />-->
+
+
 
 </beans>

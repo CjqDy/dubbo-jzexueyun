@@ -2,10 +2,12 @@ package com.orange.service.impl;
 
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.alibaba.nacos.api.config.annotation.NacosValue;
 import com.orange.common.util.RedisUtil;
 import com.orange.dao.UserBaseMapper;
 import com.orange.demo.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.time.LocalDateTime;
 import java.util.concurrent.TimeUnit;
@@ -26,6 +28,8 @@ public class DemoServiceImpl implements DemoService {
     @Autowired
     RedisUtil redisUtil;
 
+    @NacosValue(value = "${dubbo.application.name}",autoRefreshed = true)
+    private String dubbovalue;
 
     @Override
     public void sayHello() {
@@ -53,6 +57,7 @@ public class DemoServiceImpl implements DemoService {
 
     @Override
     public String sayHello4(String name) {
+        System.out.println(dubbovalue);
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
