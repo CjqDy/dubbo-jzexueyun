@@ -15,16 +15,13 @@ public class NacosDataConvert {
 
     public static Map<String, Object> NacosConvert(String s) {
         Map<String, Object> map = new HashMap<>();
-
 //        TODO
         String[] ss = s.split("\r\n");
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-
         for (String res : ss) {
             sb.append("\"").append(res.split("=")[0]).append("\"").append(":").append("\"").append(res.split("=")[1]).append("\"").append(",");
         }
-
         String result = sb.toString().substring(0,sb.toString().length()-1);
         result = result +"}";
         map = (Map)JSONObject.parse(result);

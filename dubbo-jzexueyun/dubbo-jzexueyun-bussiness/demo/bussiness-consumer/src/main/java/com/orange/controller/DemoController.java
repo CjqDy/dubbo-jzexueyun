@@ -116,6 +116,7 @@ public class DemoController {
 
     @ResponseBody
     @RequestMapping(value = "/test", method = RequestMethod.POST)
+    @SystemControllerLog(method = "test", desc = "测试方法")
     public ResponseMsg test(@RequestHeader("Uid") String userId, @RequestBody RequestMsg requestMsg) {
 //        System.out.println(ApplicationConsumer.properties.get("chengjiaqi"));
         System.out.println(chengjiaqi);

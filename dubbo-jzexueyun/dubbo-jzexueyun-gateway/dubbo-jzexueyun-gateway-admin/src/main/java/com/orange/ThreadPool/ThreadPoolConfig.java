@@ -9,7 +9,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @program: dubbo-jzexueyun
- * @description: 线程池
+ * @description: 操作日志线程池
  * @author: chengjiaqi
  * @create: 2019/04/24 15:40
  **/

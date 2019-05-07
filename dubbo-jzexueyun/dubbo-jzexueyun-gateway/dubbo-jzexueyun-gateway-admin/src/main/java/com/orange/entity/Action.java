@@ -10,16 +10,23 @@ import java.util.StringJoiner;
  **/
 public class Action {
 
-    private String actionMethod;
+    private static final long serialVersionUID = -3258839839160856613L;
 
+//    调用方法名
+    private String actionMethod;
+//    方法备注
     private String actionDes;
 
+//    类型（默认为 0）
     private String actionType;
 
+//    调用方Ip
     private String actionIp;
 
+//    用户Id
     private String userId;
 
+//    调用时间
     private String actionTime;
 
     public String getActionMethod() {

@@ -11,6 +11,8 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -46,7 +48,7 @@ public class SystemControllerLogAspect {
     //=50条数据处理
     private final int number = 50;
     //设置距离上次超时时间为10秒
-    private final long time = 10000;
+    private final long time = 10000L;
 
     //记录最后一次上传时间
     private Date date = new Date();
@@ -87,14 +89,13 @@ public class SystemControllerLogAspect {
             action.setActionTime(DateUtil.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
             synchronized (this) {
                 list.add(action);
-                System.out.println("size :" + list.size());
                 //1.达到处理的条数  2.比较上一条超过超时时间 ，立即处理
                 System.out.println((new Date().getTime() - date.getTime()));
                 if (number == list.size() || ((new Date().getTime() - date.getTime()) > time)) {
                     res = list;
                     date = new Date();
 //                    TODO:处理集合数据
-                    asyncData.dataToMongo(res);
+                    sendToMongo(res);
                     list.clear();
                 } else {
                     date = new Date();
@@ -154,6 +155,11 @@ public class SystemControllerLogAspect {
             ip = request.getRemoteAddr();
         }
         return ip;
+    }
+
+    @Async("asyncPoolTaskExecutor")
+    private void sendToMongo(List<Action> param) {
+        asyncData.dataToMongo(param);
     }
 
 

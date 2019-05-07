@@ -37,6 +37,22 @@ SentinelControllerCenter sentinelControllerCenter = new SentinelControllerCenter
 抛出异常：SentinelRpcException  
 ps：目前dubbo 捕获SentinelRpcException异常存在一些问题
     捕获RpcExcption异常
+    
+    
+    If you are using Apache Dubbo 2.7.x and later version, you can add the following dependency:
+    
+    <dependency>
+        <groupId>com.alibaba.csp</groupId>
+        <artifactId>sentinel-apache-dubbo-adapter</artifactId>
+        <version>x.y.z</version>
+    </dependency>
+    If you are using Dubbo 2.6.x or previous version, you can add the following dependency:
+    
+    <dependency>
+        <groupId>com.alibaba.csp</groupId>
+        <artifactId>sentinel-dubbo-adapter</artifactId>
+        <version>x.y.z</version>
+    </dependency>
 
 
 

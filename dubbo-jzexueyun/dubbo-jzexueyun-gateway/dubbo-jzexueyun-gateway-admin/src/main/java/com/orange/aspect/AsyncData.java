@@ -1,6 +1,10 @@
 package com.orange.aspect;
 
 import com.orange.entity.Action;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -15,15 +19,23 @@ import java.util.List;
 @Service
 public class AsyncData {
 
-    @Async("asyncPoolTaskExecutor")
-    public void dataToMongo(List<Action> list){
+    Logger logger = LoggerFactory.getLogger(AsyncData.class);
+
+    @Autowired
+    private MongoTemplate mongoTemplate;
+
+
+    /**
+     * 处理操作日志
+     * @param list
+     */
+    public void dataToMongo(List<Action> list) {
         //TODO:do something
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println("处理完成");
+        for (Action action : list) {
+            System.out.println("action : " + action);
+        mongoTemplate.save(action, "action");
+    }
+        logger.info("log finished---");
     }
 
 }
