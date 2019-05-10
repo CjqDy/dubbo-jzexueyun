@@ -5,31 +5,38 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 
 /**
- * t_sys_role_menu_map
+ * t_user_role_map
  * @author MyBatis Generator 
- * @date 2019/04/26
+ * @date 2019/05/10
  */
-public class SysRoleMenuMap implements Serializable {
+public class UserRoleMap implements Serializable {
     /**
      * 主键
      */
-    @org.hibernate.validator.constraints.Length(max = 36, message = "主键：{Length}")
+    @org.hibernate.validator.constraints.Length(max = 20, message = "主键：{Length}")
     @JsonProperty(value="ID")
     private String id;
 
     /**
      * 角色ID
      */
-    @org.hibernate.validator.constraints.Length(max = 50, message = "角色ID：{Length}")
+    @org.hibernate.validator.constraints.Length(max = 20, message = "角色ID：{Length}")
     @JsonProperty(value="ROLE_ID")
     private String roleId;
 
     /**
-     * 菜单ID
+     * 用户ID
      */
-    @org.hibernate.validator.constraints.Length(max = 20, message = "菜单ID：{Length}")
-    @JsonProperty(value="MENU_ID")
-    private String menuId;
+    @org.hibernate.validator.constraints.Length(max = 20, message = "用户ID：{Length}")
+    @JsonProperty(value="USER_ID")
+    private String userId;
+
+    /**
+     * 是否为选中角色（0 不是  1 是）
+     */
+    @org.hibernate.validator.constraints.Length(max = 1, message = "是否为选中角色（0 不是  1 是）：{Length}")
+    @JsonProperty(value="ISDEFAULT")
+    private String isdefault;
 
     private static final long serialVersionUID = 1L;
 
@@ -49,12 +56,20 @@ public class SysRoleMenuMap implements Serializable {
         this.roleId = roleId;
     }
 
-    public String getMenuId() {
-        return menuId;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setMenuId(String menuId) {
-        this.menuId = menuId;
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getIsdefault() {
+        return isdefault;
+    }
+
+    public void setIsdefault(String isdefault) {
+        this.isdefault = isdefault;
     }
 
     @Override
@@ -65,7 +80,8 @@ public class SysRoleMenuMap implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", roleId=").append(roleId);
-        sb.append(", menuId=").append(menuId);
+        sb.append(", userId=").append(userId);
+        sb.append(", isdefault=").append(isdefault);
         sb.append("]");
         return sb.toString();
     }
@@ -81,10 +97,11 @@ public class SysRoleMenuMap implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        SysRoleMenuMap other = (SysRoleMenuMap) that;
+        UserRoleMap other = (UserRoleMap) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getRoleId() == null ? other.getRoleId() == null : this.getRoleId().equals(other.getRoleId()))
-            && (this.getMenuId() == null ? other.getMenuId() == null : this.getMenuId().equals(other.getMenuId()));
+            && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
+            && (this.getIsdefault() == null ? other.getIsdefault() == null : this.getIsdefault().equals(other.getIsdefault()));
     }
 
     @Override
@@ -93,13 +110,15 @@ public class SysRoleMenuMap implements Serializable {
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getRoleId() == null) ? 0 : getRoleId().hashCode());
-        result = prime * result + ((getMenuId() == null) ? 0 : getMenuId().hashCode());
+        result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
+        result = prime * result + ((getIsdefault() == null) ? 0 : getIsdefault().hashCode());
         return result;
     }
 
-    public void copyProperties(SysRoleMenuMap target) {
+    public void copyProperties(UserRoleMap target) {
         target.setId(getId());
         target.setRoleId(getRoleId());
-        target.setMenuId(getMenuId());
+        target.setUserId(getUserId());
+        target.setIsdefault(getIsdefault());
     }
 }

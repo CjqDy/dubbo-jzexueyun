@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.orange.dao.SysUserRoleMapMapper">
-  <resultMap id="BaseResultMap" type="com.orange.entity.authcenter.SysUserRoleMap">
-    <id column="p_id" jdbcType="VARCHAR" property="pId" />
-    <result column="f_role_id" jdbcType="VARCHAR" property="fRoleId" />
-    <result column="s_type" jdbcType="CHAR" property="sType" />
-    <result column="f_orguser_id" jdbcType="VARCHAR" property="fOrguserId" />
+<mapper namespace="com.orange.dao.UserRoleMapMapper">
+  <resultMap id="BaseResultMap" type="com.orange.entity.authcenter.UserRoleMap">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="role_id" jdbcType="VARCHAR" property="roleId" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="isdefault" jdbcType="CHAR" property="isdefault" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,15 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    p_id, f_role_id, s_type, f_orguser_id
+    id, role_id, user_id, isdefault
   </sql>
-  <select id="selectByExample" parameterType="com.orange.entity.authcenter.SysUserRoleMapExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.orange.entity.authcenter.UserRoleMapExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from t_sys_user_role_map
+    from t_user_role_map
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -85,76 +85,76 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from t_sys_user_role_map
-    where p_id = #{pId,jdbcType=VARCHAR}
+    from t_user_role_map
+    where id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from t_sys_user_role_map
-    where p_id = #{pId,jdbcType=VARCHAR}
+    delete from t_user_role_map
+    where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.orange.entity.authcenter.SysUserRoleMapExample">
-    delete from t_sys_user_role_map
+  <delete id="deleteByExample" parameterType="com.orange.entity.authcenter.UserRoleMapExample">
+    delete from t_user_role_map
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.orange.entity.authcenter.SysUserRoleMap">
-    insert into t_sys_user_role_map (p_id, f_role_id, s_type, 
-      f_orguser_id)
-    values (#{pId,jdbcType=VARCHAR}, #{fRoleId,jdbcType=VARCHAR}, #{sType,jdbcType=CHAR}, 
-      #{fOrguserId,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.orange.entity.authcenter.UserRoleMap">
+    insert into t_user_role_map (id, role_id, user_id, 
+      isdefault)
+    values (#{id,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{isdefault,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.orange.entity.authcenter.SysUserRoleMap">
-    insert into t_sys_user_role_map
+  <insert id="insertSelective" parameterType="com.orange.entity.authcenter.UserRoleMap">
+    insert into t_user_role_map
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="pId != null">
-        p_id,
+      <if test="id != null">
+        id,
       </if>
-      <if test="fRoleId != null">
-        f_role_id,
+      <if test="roleId != null">
+        role_id,
       </if>
-      <if test="sType != null">
-        s_type,
+      <if test="userId != null">
+        user_id,
       </if>
-      <if test="fOrguserId != null">
-        f_orguser_id,
+      <if test="isdefault != null">
+        isdefault,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="pId != null">
-        #{pId,jdbcType=VARCHAR},
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
       </if>
-      <if test="fRoleId != null">
-        #{fRoleId,jdbcType=VARCHAR},
+      <if test="roleId != null">
+        #{roleId,jdbcType=VARCHAR},
       </if>
-      <if test="sType != null">
-        #{sType,jdbcType=CHAR},
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
       </if>
-      <if test="fOrguserId != null">
-        #{fOrguserId,jdbcType=VARCHAR},
+      <if test="isdefault != null">
+        #{isdefault,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.orange.entity.authcenter.SysUserRoleMapExample" resultType="java.lang.Long">
-    select count(*) from t_sys_user_role_map
+  <select id="countByExample" parameterType="com.orange.entity.authcenter.UserRoleMapExample" resultType="java.lang.Long">
+    select count(*) from t_user_role_map
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update t_sys_user_role_map
+    update t_user_role_map
     <set>
-      <if test="record.pId != null">
-        p_id = #{record.pId,jdbcType=VARCHAR},
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
       </if>
-      <if test="record.fRoleId != null">
-        f_role_id = #{record.fRoleId,jdbcType=VARCHAR},
+      <if test="record.roleId != null">
+        role_id = #{record.roleId,jdbcType=VARCHAR},
       </if>
-      <if test="record.sType != null">
-        s_type = #{record.sType,jdbcType=CHAR},
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=VARCHAR},
       </if>
-      <if test="record.fOrguserId != null">
-        f_orguser_id = #{record.fOrguserId,jdbcType=VARCHAR},
+      <if test="record.isdefault != null">
+        isdefault = #{record.isdefault,jdbcType=CHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -162,35 +162,35 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update t_sys_user_role_map
-    set p_id = #{record.pId,jdbcType=VARCHAR},
-      f_role_id = #{record.fRoleId,jdbcType=VARCHAR},
-      s_type = #{record.sType,jdbcType=CHAR},
-      f_orguser_id = #{record.fOrguserId,jdbcType=VARCHAR}
+    update t_user_role_map
+    set id = #{record.id,jdbcType=VARCHAR},
+      role_id = #{record.roleId,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=VARCHAR},
+      isdefault = #{record.isdefault,jdbcType=CHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.orange.entity.authcenter.SysUserRoleMap">
-    update t_sys_user_role_map
+  <update id="updateByPrimaryKeySelective" parameterType="com.orange.entity.authcenter.UserRoleMap">
+    update t_user_role_map
     <set>
-      <if test="fRoleId != null">
-        f_role_id = #{fRoleId,jdbcType=VARCHAR},
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=VARCHAR},
       </if>
-      <if test="sType != null">
-        s_type = #{sType,jdbcType=CHAR},
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
       </if>
-      <if test="fOrguserId != null">
-        f_orguser_id = #{fOrguserId,jdbcType=VARCHAR},
+      <if test="isdefault != null">
+        isdefault = #{isdefault,jdbcType=CHAR},
       </if>
     </set>
-    where p_id = #{pId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.orange.entity.authcenter.SysUserRoleMap">
-    update t_sys_user_role_map
-    set f_role_id = #{fRoleId,jdbcType=VARCHAR},
-      s_type = #{sType,jdbcType=CHAR},
-      f_orguser_id = #{fOrguserId,jdbcType=VARCHAR}
-    where p_id = #{pId,jdbcType=VARCHAR}
+  <update id="updateByPrimaryKey" parameterType="com.orange.entity.authcenter.UserRoleMap">
+    update t_user_role_map
+    set role_id = #{roleId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      isdefault = #{isdefault,jdbcType=CHAR}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -5,15 +5,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 
 /**
- * t_sys_menu
+ * t_menu
  * @author MyBatis Generator 
- * @date 2019/04/26
+ * @date 2019/05/10
  */
-public class SysMenu implements Serializable {
+public class Menu implements Serializable {
     /**
-     * 主键
+     * 主键（菜单Id,自动生成）
      */
-    @org.hibernate.validator.constraints.Length(max = 20, message = "主键：{Length}")
+    @org.hibernate.validator.constraints.Length(max = 20, message = "主键（菜单Id,自动生成）：{Length}")
     @JsonProperty(value="ID")
     private String id;
 
@@ -27,7 +27,7 @@ public class SysMenu implements Serializable {
     /**
      * 描述
      */
-    @org.hibernate.validator.constraints.Length(max = 20, message = "描述：{Length}")
+    @org.hibernate.validator.constraints.Length(max = 50, message = "描述：{Length}")
     @JsonProperty(value="MENU_DESC")
     private String menuDesc;
 
@@ -60,11 +60,18 @@ public class SysMenu implements Serializable {
     private String allowShare;
 
     /**
-     * 系统ID（见entity） 
+     * 系统ID
      */
-    @org.hibernate.validator.constraints.Length(max = 1, message = "系统ID（见entity） ：{Length}")
+    @org.hibernate.validator.constraints.Length(max = 20, message = "系统ID：{Length}")
     @JsonProperty(value="SYSTEM_ID")
     private String systemId;
+
+    /**
+     * 是否删除(1:是，0:否)
+     */
+    @org.hibernate.validator.constraints.Length(max = 1, message = "是否删除(1:是，0:否)：{Length}")
+    @JsonProperty(value="ISDELETE")
+    private String isdelete;
 
     private static final long serialVersionUID = 1L;
 
@@ -132,6 +139,14 @@ public class SysMenu implements Serializable {
         this.systemId = systemId;
     }
 
+    public String getIsdelete() {
+        return isdelete;
+    }
+
+    public void setIsdelete(String isdelete) {
+        this.isdelete = isdelete;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -146,6 +161,7 @@ public class SysMenu implements Serializable {
         sb.append(", enabled=").append(enabled);
         sb.append(", allowShare=").append(allowShare);
         sb.append(", systemId=").append(systemId);
+        sb.append(", isdelete=").append(isdelete);
         sb.append("]");
         return sb.toString();
     }
@@ -161,7 +177,7 @@ public class SysMenu implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        SysMenu other = (SysMenu) that;
+        Menu other = (Menu) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getMenuName() == null ? other.getMenuName() == null : this.getMenuName().equals(other.getMenuName()))
             && (this.getMenuDesc() == null ? other.getMenuDesc() == null : this.getMenuDesc().equals(other.getMenuDesc()))
@@ -169,7 +185,8 @@ public class SysMenu implements Serializable {
             && (this.getParentId() == null ? other.getParentId() == null : this.getParentId().equals(other.getParentId()))
             && (this.getEnabled() == null ? other.getEnabled() == null : this.getEnabled().equals(other.getEnabled()))
             && (this.getAllowShare() == null ? other.getAllowShare() == null : this.getAllowShare().equals(other.getAllowShare()))
-            && (this.getSystemId() == null ? other.getSystemId() == null : this.getSystemId().equals(other.getSystemId()));
+            && (this.getSystemId() == null ? other.getSystemId() == null : this.getSystemId().equals(other.getSystemId()))
+            && (this.getIsdelete() == null ? other.getIsdelete() == null : this.getIsdelete().equals(other.getIsdelete()));
     }
 
     @Override
@@ -184,10 +201,11 @@ public class SysMenu implements Serializable {
         result = prime * result + ((getEnabled() == null) ? 0 : getEnabled().hashCode());
         result = prime * result + ((getAllowShare() == null) ? 0 : getAllowShare().hashCode());
         result = prime * result + ((getSystemId() == null) ? 0 : getSystemId().hashCode());
+        result = prime * result + ((getIsdelete() == null) ? 0 : getIsdelete().hashCode());
         return result;
     }
 
-    public void copyProperties(SysMenu target) {
+    public void copyProperties(Menu target) {
         target.setId(getId());
         target.setMenuName(getMenuName());
         target.setMenuDesc(getMenuDesc());
@@ -196,5 +214,6 @@ public class SysMenu implements Serializable {
         target.setEnabled(getEnabled());
         target.setAllowShare(getAllowShare());
         target.setSystemId(getSystemId());
+        target.setIsdelete(getIsdelete());
     }
 }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.orange.dao.SysRoleMenuMapMapper">
-  <resultMap id="BaseResultMap" type="com.orange.entity.authcenter.SysRoleMenuMap">
-    <id column="id" jdbcType="CHAR" property="id" />
+<mapper namespace="com.orange.dao.RoleMenuMapMapper">
+  <resultMap id="BaseResultMap" type="com.orange.entity.authcenter.RoleMenuMap">
+    <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="role_id" jdbcType="VARCHAR" property="roleId" />
-    <result column="menu_id" jdbcType="CHAR" property="menuId" />
+    <result column="menu_id" jdbcType="VARCHAR" property="menuId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,13 +67,13 @@
   <sql id="Base_Column_List">
     id, role_id, menu_id
   </sql>
-  <select id="selectByExample" parameterType="com.orange.entity.authcenter.SysRoleMenuMapExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.orange.entity.authcenter.RoleMenuMapExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from t_sys_role_menu_map
+    from t_role_menu_map
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,25 +84,27 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from t_sys_role_menu_map
-    where id = #{id,jdbcType=CHAR}
+    from t_role_menu_map
+    where id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from t_sys_role_menu_map
-    where id = #{id,jdbcType=CHAR}
+    delete from t_role_menu_map
+    where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.orange.entity.authcenter.SysRoleMenuMapExample">
-    delete from t_sys_role_menu_map
+  <delete id="deleteByExample" parameterType="com.orange.entity.authcenter.RoleMenuMapExample">
+    delete from t_role_menu_map
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.orange.entity.authcenter.SysRoleMenuMap">
-    insert into t_sys_role_menu_map (id, role_id, menu_id)
-    values (#{id,jdbcType=CHAR}, #{roleId,jdbcType=VARCHAR}, #{menuId,jdbcType=CHAR})
+  <insert id="insert" parameterType="com.orange.entity.authcenter.RoleMenuMap">
+    insert into t_role_menu_map (id, role_id, menu_id
+      )
+    values (#{id,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, #{menuId,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.orange.entity.authcenter.SysRoleMenuMap">
-    insert into t_sys_role_menu_map
+  <insert id="insertSelective" parameterType="com.orange.entity.authcenter.RoleMenuMap">
+    insert into t_role_menu_map
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -116,33 +118,33 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        #{id,jdbcType=CHAR},
+        #{id,jdbcType=VARCHAR},
       </if>
       <if test="roleId != null">
         #{roleId,jdbcType=VARCHAR},
       </if>
       <if test="menuId != null">
-        #{menuId,jdbcType=CHAR},
+        #{menuId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.orange.entity.authcenter.SysRoleMenuMapExample" resultType="java.lang.Long">
-    select count(*) from t_sys_role_menu_map
+  <select id="countByExample" parameterType="com.orange.entity.authcenter.RoleMenuMapExample" resultType="java.lang.Long">
+    select count(*) from t_role_menu_map
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update t_sys_role_menu_map
+    update t_role_menu_map
     <set>
       <if test="record.id != null">
-        id = #{record.id,jdbcType=CHAR},
+        id = #{record.id,jdbcType=VARCHAR},
       </if>
       <if test="record.roleId != null">
         role_id = #{record.roleId,jdbcType=VARCHAR},
       </if>
       <if test="record.menuId != null">
-        menu_id = #{record.menuId,jdbcType=CHAR},
+        menu_id = #{record.menuId,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -150,30 +152,30 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update t_sys_role_menu_map
-    set id = #{record.id,jdbcType=CHAR},
+    update t_role_menu_map
+    set id = #{record.id,jdbcType=VARCHAR},
       role_id = #{record.roleId,jdbcType=VARCHAR},
-      menu_id = #{record.menuId,jdbcType=CHAR}
+      menu_id = #{record.menuId,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.orange.entity.authcenter.SysRoleMenuMap">
-    update t_sys_role_menu_map
+  <update id="updateByPrimaryKeySelective" parameterType="com.orange.entity.authcenter.RoleMenuMap">
+    update t_role_menu_map
     <set>
       <if test="roleId != null">
         role_id = #{roleId,jdbcType=VARCHAR},
       </if>
       <if test="menuId != null">
-        menu_id = #{menuId,jdbcType=CHAR},
+        menu_id = #{menuId,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=CHAR}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.orange.entity.authcenter.SysRoleMenuMap">
-    update t_sys_role_menu_map
+  <update id="updateByPrimaryKey" parameterType="com.orange.entity.authcenter.RoleMenuMap">
+    update t_role_menu_map
     set role_id = #{roleId,jdbcType=VARCHAR},
-      menu_id = #{menuId,jdbcType=CHAR}
-    where id = #{id,jdbcType=CHAR}
+      menu_id = #{menuId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

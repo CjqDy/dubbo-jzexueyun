@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.orange.dao.SysMenuMapper">
-  <resultMap id="BaseResultMap" type="com.orange.entity.authcenter.SysMenu">
-    <id column="id" jdbcType="CHAR" property="id" />
+<mapper namespace="com.orange.dao.MenuMapper">
+  <resultMap id="BaseResultMap" type="com.orange.entity.authcenter.Menu">
+    <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
     <result column="menu_desc" jdbcType="VARCHAR" property="menuDesc" />
     <result column="url" jdbcType="VARCHAR" property="url" />
-    <result column="parent_id" jdbcType="CHAR" property="parentId" />
+    <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
     <result column="enabled" jdbcType="CHAR" property="enabled" />
     <result column="allow_share" jdbcType="CHAR" property="allowShare" />
-    <result column="system_id" jdbcType="CHAR" property="systemId" />
+    <result column="system_id" jdbcType="VARCHAR" property="systemId" />
+    <result column="isdelete" jdbcType="CHAR" property="isdelete" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,15 +71,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, menu_name, menu_desc, url, parent_id, enabled, allow_share, system_id
+    id, menu_name, menu_desc, url, parent_id, enabled, allow_share, system_id, isdelete
   </sql>
-  <select id="selectByExample" parameterType="com.orange.entity.authcenter.SysMenuExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.orange.entity.authcenter.MenuExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from t_sys_menu
+    from t_menu
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -89,29 +90,31 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from t_sys_menu
-    where id = #{id,jdbcType=CHAR}
+    from t_menu
+    where id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from t_sys_menu
-    where id = #{id,jdbcType=CHAR}
+    delete from t_menu
+    where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.orange.entity.authcenter.SysMenuExample">
-    delete from t_sys_menu
+  <delete id="deleteByExample" parameterType="com.orange.entity.authcenter.MenuExample">
+    delete from t_menu
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.orange.entity.authcenter.SysMenu">
-    insert into t_sys_menu (id, menu_name, menu_desc, 
-      url, parent_id, enabled, allow_share, 
-      system_id)
-    values (#{id,jdbcType=CHAR}, #{menuName,jdbcType=VARCHAR}, #{menuDesc,jdbcType=VARCHAR}, 
-      #{url,jdbcType=VARCHAR}, #{parentId,jdbcType=CHAR}, #{enabled,jdbcType=CHAR}, #{allowShare,jdbcType=CHAR}, 
-      #{systemId,jdbcType=CHAR})
+  <insert id="insert" parameterType="com.orange.entity.authcenter.Menu">
+    insert into t_menu (id, menu_name, menu_desc, 
+      url, parent_id, enabled, 
+      allow_share, system_id, isdelete
+      )
+    values (#{id,jdbcType=VARCHAR}, #{menuName,jdbcType=VARCHAR}, #{menuDesc,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{enabled,jdbcType=CHAR}, 
+      #{allowShare,jdbcType=CHAR}, #{systemId,jdbcType=VARCHAR}, #{isdelete,jdbcType=CHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.orange.entity.authcenter.SysMenu">
-    insert into t_sys_menu
+  <insert id="insertSelective" parameterType="com.orange.entity.authcenter.Menu">
+    insert into t_menu
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -137,10 +140,13 @@
       <if test="systemId != null">
         system_id,
       </if>
+      <if test="isdelete != null">
+        isdelete,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        #{id,jdbcType=CHAR},
+        #{id,jdbcType=VARCHAR},
       </if>
       <if test="menuName != null">
         #{menuName,jdbcType=VARCHAR},
@@ -152,7 +158,7 @@
         #{url,jdbcType=VARCHAR},
       </if>
       <if test="parentId != null">
-        #{parentId,jdbcType=CHAR},
+        #{parentId,jdbcType=VARCHAR},
       </if>
       <if test="enabled != null">
         #{enabled,jdbcType=CHAR},
@@ -161,21 +167,24 @@
         #{allowShare,jdbcType=CHAR},
       </if>
       <if test="systemId != null">
-        #{systemId,jdbcType=CHAR},
+        #{systemId,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.orange.entity.authcenter.SysMenuExample" resultType="java.lang.Long">
-    select count(*) from t_sys_menu
+  <select id="countByExample" parameterType="com.orange.entity.authcenter.MenuExample" resultType="java.lang.Long">
+    select count(*) from t_menu
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update t_sys_menu
+    update t_menu
     <set>
       <if test="record.id != null">
-        id = #{record.id,jdbcType=CHAR},
+        id = #{record.id,jdbcType=VARCHAR},
       </if>
       <if test="record.menuName != null">
         menu_name = #{record.menuName,jdbcType=VARCHAR},
@@ -187,7 +196,7 @@
         url = #{record.url,jdbcType=VARCHAR},
       </if>
       <if test="record.parentId != null">
-        parent_id = #{record.parentId,jdbcType=CHAR},
+        parent_id = #{record.parentId,jdbcType=VARCHAR},
       </if>
       <if test="record.enabled != null">
         enabled = #{record.enabled,jdbcType=CHAR},
@@ -196,7 +205,10 @@
         allow_share = #{record.allowShare,jdbcType=CHAR},
       </if>
       <if test="record.systemId != null">
-        system_id = #{record.systemId,jdbcType=CHAR},
+        system_id = #{record.systemId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isdelete != null">
+        isdelete = #{record.isdelete,jdbcType=CHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -204,21 +216,22 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update t_sys_menu
-    set id = #{record.id,jdbcType=CHAR},
+    update t_menu
+    set id = #{record.id,jdbcType=VARCHAR},
       menu_name = #{record.menuName,jdbcType=VARCHAR},
       menu_desc = #{record.menuDesc,jdbcType=VARCHAR},
       url = #{record.url,jdbcType=VARCHAR},
-      parent_id = #{record.parentId,jdbcType=CHAR},
+      parent_id = #{record.parentId,jdbcType=VARCHAR},
       enabled = #{record.enabled,jdbcType=CHAR},
       allow_share = #{record.allowShare,jdbcType=CHAR},
-      system_id = #{record.systemId,jdbcType=CHAR}
+      system_id = #{record.systemId,jdbcType=VARCHAR},
+      isdelete = #{record.isdelete,jdbcType=CHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.orange.entity.authcenter.SysMenu">
-    update t_sys_menu
+  <update id="updateByPrimaryKeySelective" parameterType="com.orange.entity.authcenter.Menu">
+    update t_menu
     <set>
       <if test="menuName != null">
         menu_name = #{menuName,jdbcType=VARCHAR},
@@ -230,7 +243,7 @@
         url = #{url,jdbcType=VARCHAR},
       </if>
       <if test="parentId != null">
-        parent_id = #{parentId,jdbcType=CHAR},
+        parent_id = #{parentId,jdbcType=VARCHAR},
       </if>
       <if test="enabled != null">
         enabled = #{enabled,jdbcType=CHAR},
@@ -239,20 +252,24 @@
         allow_share = #{allowShare,jdbcType=CHAR},
       </if>
       <if test="systemId != null">
-        system_id = #{systemId,jdbcType=CHAR},
+        system_id = #{systemId,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null">
+        isdelete = #{isdelete,jdbcType=CHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=CHAR}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.orange.entity.authcenter.SysMenu">
-    update t_sys_menu
+  <update id="updateByPrimaryKey" parameterType="com.orange.entity.authcenter.Menu">
+    update t_menu
     set menu_name = #{menuName,jdbcType=VARCHAR},
       menu_desc = #{menuDesc,jdbcType=VARCHAR},
       url = #{url,jdbcType=VARCHAR},
-      parent_id = #{parentId,jdbcType=CHAR},
+      parent_id = #{parentId,jdbcType=VARCHAR},
       enabled = #{enabled,jdbcType=CHAR},
       allow_share = #{allowShare,jdbcType=CHAR},
-      system_id = #{systemId,jdbcType=CHAR}
-    where id = #{id,jdbcType=CHAR}
+      system_id = #{systemId,jdbcType=VARCHAR},
+      isdelete = #{isdelete,jdbcType=CHAR}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

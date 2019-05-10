@@ -15,7 +15,6 @@
             <list>
                 <value>classpath:application.properties</value>
                 <value>classpath:common.properties</value>
-                <!-- <value>classpath:mongodb.properties</value> -->
             </list>
         </property>
     </bean>

@@ -2,15 +2,15 @@ package com.orange.dto.authcenter;
 
 
 import com.orange.common.util.page.Pagination;
-import com.orange.entity.authcenter.SysRoleMenuMap;
+import com.orange.entity.authcenter.RoleSystemMap;
 
 /**
-* SysRoleMenuMapDTO
+* RoleSystemMapDTO
 *
 * @author mybatis generator
-* @date 2019/04/26
+* @date 2019/05/10
 */
-public class SysRoleMenuMapDTO extends SysRoleMenuMap {
+public class RoleSystemMapDTO extends RoleSystemMap {
 
   /**
    * 分页参数

@@ -1,6 +1,9 @@
 package com.orange.auth.service;
 
-import com.orange.entity.authcenter.SysRole;
+import com.orange.entity.authcenter.Role;
+
+import java.io.IOException;
+import java.util.List;
 
 /**
  * @program: dubbo-jzexueyun
@@ -17,5 +20,7 @@ public interface SysRoleService {
      * @return the sys role
      * @throws Exception the exception
      */
-    SysRole getSysRole(String roleId) throws Exception;
+    Role getSysRole(String roleId) throws IOException;
+
+    List<Role> selectByExample()throws IOException;
 }

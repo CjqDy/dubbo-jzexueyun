@@ -27,14 +27,15 @@ public class AsyncData {
 
     /**
      * 处理操作日志
+     *
      * @param list
      */
     public void dataToMongo(List<Action> list) {
         //TODO:do something
         for (Action action : list) {
             System.out.println("action : " + action);
-        mongoTemplate.save(action, "action");
-    }
+            mongoTemplate.save(action, "action");
+        }
         logger.info("log finished---");
     }
 

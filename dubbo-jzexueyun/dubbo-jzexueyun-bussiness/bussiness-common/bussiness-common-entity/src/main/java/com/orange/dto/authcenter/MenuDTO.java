@@ -1,16 +1,15 @@
 package com.orange.dto.authcenter;
 
-
 import com.orange.common.util.page.Pagination;
-import com.orange.entity.authcenter.SysMenu;
+import com.orange.entity.authcenter.Menu;
 
 /**
-* SysMenuDTO
+* MenuDTO
 *
 * @author mybatis generator
-* @date 2019/04/26
+* @date 2019/05/10
 */
-public class SysMenuDTO extends SysMenu {
+public class MenuDTO extends Menu {
 
   /**
    * 分页参数

@@ -5,6 +5,7 @@ import com.alibaba.nacos.api.config.ConfigService;
 import com.alibaba.nacos.api.config.listener.Listener;
 import com.alibaba.nacos.api.exception.NacosException;
 import com.orange.common.service.NacosAutoConfigCenter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +22,9 @@ import java.util.concurrent.Executor;
 public class NacosBussinessConsumerAutoConfigCenter implements NacosAutoConfigCenter {
 
     public static  String res = "";
+
+    @Autowired
+    private ConfigService configService;
 
     @Override
     public void getNacosSystemProperties(String serverAddr, String dataId, String group) {

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SysRoleMenuMapExample implements Serializable {
+public class UserRoleMapExample implements Serializable {
     protected String orderByClause;
 
     protected boolean distinct;
@@ -13,7 +13,7 @@ public class SysRoleMenuMapExample implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public SysRoleMenuMapExample() {
+    public UserRoleMapExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -247,73 +247,143 @@ public class SysRoleMenuMapExample implements Serializable {
             return (Criteria) this;
         }
 
-        public Criteria andMenuIdIsNull() {
-            addCriterion("menu_id is null");
+        public Criteria andUserIdIsNull() {
+            addCriterion("user_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andMenuIdIsNotNull() {
-            addCriterion("menu_id is not null");
+        public Criteria andUserIdIsNotNull() {
+            addCriterion("user_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andMenuIdEqualTo(String value) {
-            addCriterion("menu_id =", value, "menuId");
+        public Criteria andUserIdEqualTo(String value) {
+            addCriterion("user_id =", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andMenuIdNotEqualTo(String value) {
-            addCriterion("menu_id <>", value, "menuId");
+        public Criteria andUserIdNotEqualTo(String value) {
+            addCriterion("user_id <>", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andMenuIdGreaterThan(String value) {
-            addCriterion("menu_id >", value, "menuId");
+        public Criteria andUserIdGreaterThan(String value) {
+            addCriterion("user_id >", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andMenuIdGreaterThanOrEqualTo(String value) {
-            addCriterion("menu_id >=", value, "menuId");
+        public Criteria andUserIdGreaterThanOrEqualTo(String value) {
+            addCriterion("user_id >=", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andMenuIdLessThan(String value) {
-            addCriterion("menu_id <", value, "menuId");
+        public Criteria andUserIdLessThan(String value) {
+            addCriterion("user_id <", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andMenuIdLessThanOrEqualTo(String value) {
-            addCriterion("menu_id <=", value, "menuId");
+        public Criteria andUserIdLessThanOrEqualTo(String value) {
+            addCriterion("user_id <=", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andMenuIdLike(String value) {
-            addCriterion("menu_id like", value, "menuId");
+        public Criteria andUserIdLike(String value) {
+            addCriterion("user_id like", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andMenuIdNotLike(String value) {
-            addCriterion("menu_id not like", value, "menuId");
+        public Criteria andUserIdNotLike(String value) {
+            addCriterion("user_id not like", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andMenuIdIn(List<String> values) {
-            addCriterion("menu_id in", values, "menuId");
+        public Criteria andUserIdIn(List<String> values) {
+            addCriterion("user_id in", values, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andMenuIdNotIn(List<String> values) {
-            addCriterion("menu_id not in", values, "menuId");
+        public Criteria andUserIdNotIn(List<String> values) {
+            addCriterion("user_id not in", values, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andMenuIdBetween(String value1, String value2) {
-            addCriterion("menu_id between", value1, value2, "menuId");
+        public Criteria andUserIdBetween(String value1, String value2) {
+            addCriterion("user_id between", value1, value2, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andMenuIdNotBetween(String value1, String value2) {
-            addCriterion("menu_id not between", value1, value2, "menuId");
+        public Criteria andUserIdNotBetween(String value1, String value2) {
+            addCriterion("user_id not between", value1, value2, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsdefaultIsNull() {
+            addCriterion("isdefault is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsdefaultIsNotNull() {
+            addCriterion("isdefault is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsdefaultEqualTo(String value) {
+            addCriterion("isdefault =", value, "isdefault");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsdefaultNotEqualTo(String value) {
+            addCriterion("isdefault <>", value, "isdefault");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsdefaultGreaterThan(String value) {
+            addCriterion("isdefault >", value, "isdefault");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsdefaultGreaterThanOrEqualTo(String value) {
+            addCriterion("isdefault >=", value, "isdefault");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsdefaultLessThan(String value) {
+            addCriterion("isdefault <", value, "isdefault");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsdefaultLessThanOrEqualTo(String value) {
+            addCriterion("isdefault <=", value, "isdefault");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsdefaultLike(String value) {
+            addCriterion("isdefault like", value, "isdefault");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsdefaultNotLike(String value) {
+            addCriterion("isdefault not like", value, "isdefault");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsdefaultIn(List<String> values) {
+            addCriterion("isdefault in", values, "isdefault");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsdefaultNotIn(List<String> values) {
+            addCriterion("isdefault not in", values, "isdefault");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsdefaultBetween(String value1, String value2) {
+            addCriterion("isdefault between", value1, value2, "isdefault");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsdefaultNotBetween(String value1, String value2) {
+            addCriterion("isdefault not between", value1, value2, "isdefault");
             return (Criteria) this;
         }
     }

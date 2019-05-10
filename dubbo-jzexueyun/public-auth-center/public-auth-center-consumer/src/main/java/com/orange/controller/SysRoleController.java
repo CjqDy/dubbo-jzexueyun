@@ -6,7 +6,6 @@ import com.orange.common.enums.ReturnMsgEnum;
 import com.orange.common.response.RequestMsg;
 import com.orange.common.response.ResponseMsg;
 import com.orange.common.util.JsonUtil;
-import com.orange.dto.authcenter.SysRoleDTO;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -37,9 +36,8 @@ public class SysRoleController {
                                   @RequestBody RequestMsg requestMsg) throws Exception {
         System.out.println("userId = " + userId);
         JSONObject json = JSONObject.fromObject(requestMsg.getRoot());
-        SysRoleDTO sysRoleDTO = (SysRoleDTO) JsonUtil.JSONToObj(json.toString(), SysRoleDTO.class);
         return new ResponseMsg(requestMsg.getRoute(), GeneralConstant.SUCCESS, ReturnMsgEnum.SUCCESS.getMsg(),
-                sysRoleService.getSysRole("1001"));
+                sysRoleService.selectByExample());
     }
 
 }
