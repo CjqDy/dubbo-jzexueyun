@@ -48,34 +48,34 @@
             <artifactId>spring-context</artifactId>
         </dependency>
         <!-- Dubbo dependency -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>dubbo</artifactId>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>com.alibaba</groupId>-->
+        <!--<artifactId>dubbo</artifactId>-->
+        <!--</dependency>-->
 
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>dubbo-registry-nacos</artifactId>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>com.alibaba</groupId>-->
+        <!--<artifactId>dubbo-registry-nacos</artifactId>-->
+        <!--</dependency>-->
 
         <!--dubbo 2.7.1版本  目前存在问题-->
 
-        <!--<dependency>-->
-        <!--<groupId>org.apache.dubbo</groupId>-->
-        <!--<artifactId>dubbo</artifactId>-->
-        <!--<version>2.7.0</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo</artifactId>
+            <version>2.7.1</version>
+        </dependency>
 
-        <!--<dependency>-->
-        <!--<groupId>org.apache.dubbo</groupId>-->
-        <!--<artifactId>dubbo-registry-nacos</artifactId>-->
-        <!--<version>2.7.1</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>com.alibaba.nacos</groupId>-->
-        <!--<artifactId>nacos-client</artifactId>-->
-        <!--<version>1.0.0-RC3</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-registry-nacos</artifactId>
+            <version>2.7.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.nacos</groupId>
+            <artifactId>nacos-client</artifactId>
+            <version>1.0.0-RC3</version>
+        </dependency>
 
         <dependency>
             <groupId>org.slf4j</groupId>

@@ -50,7 +50,6 @@ public class SessionFilter implements Filter {
         String uri = request.getRequestURI();
         //Filter interface address without authentication
         if (isTokenExcludeUrl(uri)) {
-            System.out.println("1111");
             filterChain.doFilter(request, response);
             return;
         }

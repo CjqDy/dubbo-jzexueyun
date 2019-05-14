@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * t_menu
  * @author MyBatis Generator 
- * @date 2019/05/10
+ * @date 2019/05/13
  */
 public class Menu implements Serializable {
     /**
@@ -72,6 +72,13 @@ public class Menu implements Serializable {
     @org.hibernate.validator.constraints.Length(max = 1, message = "是否删除(1:是，0:否)：{Length}")
     @JsonProperty(value="ISDELETE")
     private String isdelete;
+
+    /**
+     * 排序字段
+     */
+    @org.hibernate.validator.constraints.Length(max = 2, message = "排序字段：{Length}")
+    @JsonProperty(value="SORT_ORDER")
+    private String sortOrder;
 
     private static final long serialVersionUID = 1L;
 
@@ -147,6 +154,14 @@ public class Menu implements Serializable {
         this.isdelete = isdelete;
     }
 
+    public String getSortOrder() {
+        return sortOrder;
+    }
+
+    public void setSortOrder(String sortOrder) {
+        this.sortOrder = sortOrder;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -162,6 +177,7 @@ public class Menu implements Serializable {
         sb.append(", allowShare=").append(allowShare);
         sb.append(", systemId=").append(systemId);
         sb.append(", isdelete=").append(isdelete);
+        sb.append(", sortOrder=").append(sortOrder);
         sb.append("]");
         return sb.toString();
     }
@@ -186,7 +202,8 @@ public class Menu implements Serializable {
             && (this.getEnabled() == null ? other.getEnabled() == null : this.getEnabled().equals(other.getEnabled()))
             && (this.getAllowShare() == null ? other.getAllowShare() == null : this.getAllowShare().equals(other.getAllowShare()))
             && (this.getSystemId() == null ? other.getSystemId() == null : this.getSystemId().equals(other.getSystemId()))
-            && (this.getIsdelete() == null ? other.getIsdelete() == null : this.getIsdelete().equals(other.getIsdelete()));
+            && (this.getIsdelete() == null ? other.getIsdelete() == null : this.getIsdelete().equals(other.getIsdelete()))
+            && (this.getSortOrder() == null ? other.getSortOrder() == null : this.getSortOrder().equals(other.getSortOrder()));
     }
 
     @Override
@@ -202,6 +219,7 @@ public class Menu implements Serializable {
         result = prime * result + ((getAllowShare() == null) ? 0 : getAllowShare().hashCode());
         result = prime * result + ((getSystemId() == null) ? 0 : getSystemId().hashCode());
         result = prime * result + ((getIsdelete() == null) ? 0 : getIsdelete().hashCode());
+        result = prime * result + ((getSortOrder() == null) ? 0 : getSortOrder().hashCode());
         return result;
     }
 
@@ -215,5 +233,6 @@ public class Menu implements Serializable {
         target.setAllowShare(getAllowShare());
         target.setSystemId(getSystemId());
         target.setIsdelete(getIsdelete());
+        target.setSortOrder(getSortOrder());
     }
 }

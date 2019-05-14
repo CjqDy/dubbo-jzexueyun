@@ -1,13 +1,7 @@
 package com.orange;
 
 
-import com.alibaba.nacos.api.config.annotation.NacosConfigListener;
-import com.alibaba.nacos.api.config.annotation.NacosValue;
-import com.alibaba.nacos.api.exception.NacosException;
 
-
-import com.alibaba.nacos.spring.context.annotation.config.EnableNacosConfig;
-import com.alibaba.nacos.spring.context.annotation.config.NacosPropertySource;
 import com.orange.common.exception.GlobalException;
 import com.orange.common.service.NacosAutoConfigCenter;
 import com.orange.util.NacosBussinessConsumerAutoConfigCenter;
@@ -15,6 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.ImportResource;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.Properties;
 
@@ -27,6 +22,7 @@ import java.util.Properties;
 @SpringBootApplication
 @ImportResource(locations = {"classpath:/spring/spring.xml"})
 @ServletComponentScan
+@EnableSwagger2
 public class ApplicationConsumer {
 
 

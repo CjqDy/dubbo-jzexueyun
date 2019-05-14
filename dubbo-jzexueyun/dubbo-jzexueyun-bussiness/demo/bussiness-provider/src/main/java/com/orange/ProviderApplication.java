@@ -1,15 +1,8 @@
 package com.orange;
 
 
-import com.alibaba.csp.sentinel.adapter.dubbo.fallback.DubboFallbackRegistry;
-import com.alibaba.dubbo.rpc.RpcException;
-import com.alibaba.nacos.api.annotation.NacosProperties;
-import com.alibaba.nacos.spring.context.annotation.config.EnableNacosConfig;
-import com.alibaba.nacos.spring.context.annotation.config.NacosPropertySource;
-import com.alibaba.nacos.spring.context.annotation.config.NacosPropertySources;
 import com.orange.common.contants.SentinelConstant;
 
-import com.orange.dubbo.fallback.DemoFallback;
 import com.orange.dubbo.sentinel.SentinelControllerCenter;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;

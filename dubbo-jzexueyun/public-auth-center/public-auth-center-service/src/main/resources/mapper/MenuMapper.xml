@@ -11,6 +11,7 @@
     <result column="allow_share" jdbcType="CHAR" property="allowShare" />
     <result column="system_id" jdbcType="VARCHAR" property="systemId" />
     <result column="isdelete" jdbcType="CHAR" property="isdelete" />
+    <result column="sort_order" jdbcType="CHAR" property="sortOrder" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,7 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, menu_name, menu_desc, url, parent_id, enabled, allow_share, system_id, isdelete
+    id, menu_name, menu_desc, url, parent_id, enabled, allow_share, system_id, isdelete, 
+    sort_order
   </sql>
   <select id="selectByExample" parameterType="com.orange.entity.authcenter.MenuExample" resultMap="BaseResultMap">
     select
@@ -106,12 +108,12 @@
   <insert id="insert" parameterType="com.orange.entity.authcenter.Menu">
     insert into t_menu (id, menu_name, menu_desc, 
       url, parent_id, enabled, 
-      allow_share, system_id, isdelete
-      )
+      allow_share, system_id, isdelete, 
+      sort_order)
     values (#{id,jdbcType=VARCHAR}, #{menuName,jdbcType=VARCHAR}, #{menuDesc,jdbcType=VARCHAR}, 
       #{url,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{enabled,jdbcType=CHAR}, 
-      #{allowShare,jdbcType=CHAR}, #{systemId,jdbcType=VARCHAR}, #{isdelete,jdbcType=CHAR}
-      )
+      #{allowShare,jdbcType=CHAR}, #{systemId,jdbcType=VARCHAR}, #{isdelete,jdbcType=CHAR}, 
+      #{sortOrder,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.orange.entity.authcenter.Menu">
     insert into t_menu
@@ -143,6 +145,9 @@
       <if test="isdelete != null">
         isdelete,
       </if>
+      <if test="sortOrder != null">
+        sort_order,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -171,6 +176,9 @@
       </if>
       <if test="isdelete != null">
         #{isdelete,jdbcType=CHAR},
+      </if>
+      <if test="sortOrder != null">
+        #{sortOrder,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
@@ -210,6 +218,9 @@
       <if test="record.isdelete != null">
         isdelete = #{record.isdelete,jdbcType=CHAR},
       </if>
+      <if test="record.sortOrder != null">
+        sort_order = #{record.sortOrder,jdbcType=CHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -225,7 +236,8 @@
       enabled = #{record.enabled,jdbcType=CHAR},
       allow_share = #{record.allowShare,jdbcType=CHAR},
       system_id = #{record.systemId,jdbcType=VARCHAR},
-      isdelete = #{record.isdelete,jdbcType=CHAR}
+      isdelete = #{record.isdelete,jdbcType=CHAR},
+      sort_order = #{record.sortOrder,jdbcType=CHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -257,6 +269,9 @@
       <if test="isdelete != null">
         isdelete = #{isdelete,jdbcType=CHAR},
       </if>
+      <if test="sortOrder != null">
+        sort_order = #{sortOrder,jdbcType=CHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
@@ -269,7 +284,8 @@
       enabled = #{enabled,jdbcType=CHAR},
       allow_share = #{allowShare,jdbcType=CHAR},
       system_id = #{systemId,jdbcType=VARCHAR},
-      isdelete = #{isdelete,jdbcType=CHAR}
+      isdelete = #{isdelete,jdbcType=CHAR},
+      sort_order = #{sortOrder,jdbcType=CHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

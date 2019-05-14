@@ -1,27 +1,41 @@
 package com.orange.common.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
-public class ResponseRoute {
+import java.io.Serializable;
+
+@ApiModel(value = "返回系统结果")
+public class ResponseRoute implements Serializable {
 
 	private static final long serialVersionUID = -2461017938431758852L;
 	@JsonProperty(value="SENDER")
+	@ApiModelProperty(value = "发送方")
 	public String sender;
 	@JsonProperty(value="RECEIVE")
+	@ApiModelProperty(value = "接受方")
 	public String receive;
 	@JsonProperty(value="TIME")
+	@ApiModelProperty(value = "时间")
 	public String time;
 	@JsonProperty(value="SERVCODE")
+	@ApiModelProperty(value = "服务编号")
 	public String servcode;
 	@JsonProperty(value="MSGTYPE")
+	@ApiModelProperty(value = "消息类型")
 	public String msgtype;
 	@JsonProperty(value="TRANSID")
+	@ApiModelProperty(value = "时间戳")
 	public String transId;
 	@JsonProperty(value="VERSION")
+	@ApiModelProperty(value = "版本号")
 	public String version;
 	@JsonProperty(value="SYSSIGN")
+	@ApiModelProperty(value = "系统标签")
 	public String sysSign;
 	@JsonProperty(value="SYSTIME")
+	@ApiModelProperty(value = "暂不使用")
 	public Long sysTime;
 	public ResponseRoute() {
 		super();

@@ -6,6 +6,9 @@ import com.orange.common.enums.ReturnMsgEnum;
 import com.orange.common.response.RequestMsg;
 import com.orange.common.response.ResponseMsg;
 import com.orange.common.util.JsonUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
  **/
 @RestController
 @RequestMapping("/sysrole")
+@Api(value = "check module",description = "haha")
 public class SysRoleController {
 
     @Autowired
@@ -32,8 +36,9 @@ public class SysRoleController {
      */
     @ResponseBody
     @RequestMapping(value = "/getSysRole", method = RequestMethod.POST)
+    @ApiOperation("swagger ui 注释 方法级别")
     public ResponseMsg getSysRole(@RequestHeader(GeneralConstant.HEADER_NAME_UID) String userId,
-                                  @RequestBody RequestMsg requestMsg) throws Exception {
+                                  @RequestBody@ApiParam(name = "role") RequestMsg requestMsg) throws Exception {
         System.out.println("userId = " + userId);
         JSONObject json = JSONObject.fromObject(requestMsg.getRoot());
         return new ResponseMsg(requestMsg.getRoute(), GeneralConstant.SUCCESS, ReturnMsgEnum.SUCCESS.getMsg(),
