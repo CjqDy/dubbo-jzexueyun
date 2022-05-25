@@ -23,7 +23,7 @@
         <dubbo.version>2.7.1</dubbo.version>
         <dubbo.nacos>0.0.1</dubbo.nacos>
         <dubbo.nacos.client>0.9.1</dubbo.nacos.client>
-        <spring-context>4.3.22.RELEASE</spring-context>
+        <spring-context>5.2.22.RELEASE</spring-context>
         <ehcache.version>2.10.0</ehcache.version>
         <spring-version>4.3.13.RELEASE</spring-version>
     </properties>
